@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (commentaire) {
+      <div>
+        <h2 data-cy="commentaireDetailsHeading"><span reclamationTranslate="pfeApp.commentaire.detail.title">Commentaire</span></h2>
+
+        <hr />
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span reclamationTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ commentaire.id }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.commentaire.contenu">Contenu</span></dt>
+          <dd>
+            <span>{{ commentaire.contenu }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.commentaire.reclamation">Reclamation</span></dt>
+          <dd>
+            @if (commentaire.reclamation) {
+              <div>
+                <a [routerLink]="['/reclamation', commentaire.reclamation.id, 'view']">{{ commentaire.reclamation.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/commentaire', commentaire.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

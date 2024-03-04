@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240209110004"
+  },
+  "applications": ["pfe"],
+  "dto": "mapstruct",
+  "entityTableName": "reclamation",
+  "fields": [
+    {
+      "fieldName": "categorie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Reclamation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "pieceJointe",
+      "otherEntityRelationshipName": "reclamation",
+      "relationshipName": "pieceJointe",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "commentaire",
+      "otherEntityRelationshipName": "reclamation",
+      "relationshipName": "commentaire",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "reclamation",
+      "relationshipName": "personne",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,58 @@
+<div>
+  <h2>
+    <span id="metrics-page-heading" reclamationTranslate="metrics.title" data-cy="metricsPageHeading">Métriques de l&apos;application</span>
+
+    <button class="btn btn-primary float-end" (click)="refresh()">
+      <fa-icon icon="sync"></fa-icon> <span reclamationTranslate="metrics.refresh.button">Rafraîchir</span>
+    </button>
+  </h2>
+
+  <h3 reclamationTranslate="metrics.jvm.title">Métriques de la JVM</h3>
+
+  @if (metrics && !updatingMetrics) {
+    <div class="row">
+      <reclamation-jvm-memory class="col-md-4" [updating]="updatingMetrics" [jvmMemoryMetrics]="metrics.jvm"></reclamation-jvm-memory>
+
+      <reclamation-jvm-threads class="col-md-4" [threads]="threads"></reclamation-jvm-threads>
+
+      <reclamation-metrics-system
+        class="col-md-4"
+        [updating]="updatingMetrics"
+        [systemMetrics]="metrics.processMetrics"
+      ></reclamation-metrics-system>
+    </div>
+  }
+
+  @if (metrics && metricsKeyExists('garbageCollector')) {
+    <reclamation-metrics-garbagecollector
+      [updating]="updatingMetrics"
+      [garbageCollectorMetrics]="metrics.garbageCollector"
+    ></reclamation-metrics-garbagecollector>
+  }
+
+  @if (updatingMetrics) {
+    <div class="well well-lg" reclamationTranslate="metrics.updating">Mise à jour...</div>
+  }
+
+  @if (metrics && metricsKeyExists('http.server.requests')) {
+    <reclamation-metrics-request
+      [updating]="updatingMetrics"
+      [requestMetrics]="metrics['http.server.requests']"
+    ></reclamation-metrics-request>
+  }
+
+  @if (metrics && metricsKeyExists('services')) {
+    <reclamation-metrics-endpoints-requests
+      [updating]="updatingMetrics"
+      [endpointsRequestsMetrics]="metrics.services"
+    ></reclamation-metrics-endpoints-requests>
+  }
+
+  @if (metrics && metricsKeyExists('cache')) {
+    <reclamation-metrics-cache [updating]="updatingMetrics" [cacheMetrics]="metrics.cache"></reclamation-metrics-cache>
+  }
+
+  @if (metrics && metricsKeyExistsAndObjectNotEmpty('databases')) {
+    <reclamation-metrics-datasource [updating]="updatingMetrics" [datasourceMetrics]="metrics.databases"></reclamation-metrics-datasource>
+  }
+</div>

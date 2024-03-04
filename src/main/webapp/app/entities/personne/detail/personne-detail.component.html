@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (personne) {
+      <div>
+        <h2 data-cy="personneDetailsHeading"><span reclamationTranslate="pfeApp.personne.detail.title">Personne</span></h2>
+
+        <hr />
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span reclamationTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ personne.id }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.nom">Nom</span></dt>
+          <dd>
+            <span>{{ personne.nom }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.prenom">Prenom</span></dt>
+          <dd>
+            <span>{{ personne.prenom }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.cIN">C IN</span></dt>
+          <dd>
+            <span>{{ personne.cIN }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.dateNaissance">Date Naissance</span></dt>
+          <dd>
+            <span>{{ personne.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.phone">Phone</span></dt>
+          <dd>
+            <span>{{ personne.phone }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.rib">Rib</span></dt>
+          <dd>
+            <span>{{ personne.rib }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.email">Email</span></dt>
+          <dd>
+            <span>{{ personne.email }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.personne.sex">Sex</span></dt>
+          <dd>
+            <span>{{ personne.sex }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/personne', personne.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

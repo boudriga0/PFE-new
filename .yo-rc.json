@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "pfe",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "devServerPort": 4200,
+    "entities": ["Personne", "Reclamation", "Commentaire", "PieceJointe"],
+    "jhiPrefix": "reclamation",
+    "jhipsterVersion": "8.1.0",
+    "jwtSecretKey": "NGFjMjdkMjliYTg1NzA4NDhjOWQxNTgwNjJiMTRkMjY5MTViZTJhNGIzZTJiMDliYTBhZmRmOTVjMTA2YjIwNTY1MmM1Nzc3NGZmMzJiZjAyNjMxZDFlZTVmZjJhZjc5NzcwMWZmZmYyYzNhYjdhMDJmMWNkZTkzNWZiMzFmZjM=",
+    "languages": ["fr"],
+    "lastLiquibaseTimestamp": 1707476524000,
+    "nativeLanguage": "fr",
+    "packageFolder": "com/reclamation/pfe",
+    "packageName": "com.reclamation.pfe",
+    "prodDatabaseType": "postgresql",
+    "serverPort": "8181"
+  }
+}

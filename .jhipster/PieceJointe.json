@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20240209110204"
+  },
+  "applications": ["pfe"],
+  "dto": "mapstruct",
+  "entityTableName": "piece_jointe",
+  "fields": [
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "data",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PieceJointe",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "reclamation",
+      "otherEntityRelationshipName": "pieceJointe",
+      "relationshipName": "reclamation",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

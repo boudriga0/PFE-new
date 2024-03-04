@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20240209105904"
+  },
+  "applications": ["pfe"],
+  "dto": "mapstruct",
+  "entityTableName": "personne",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cIN",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rib",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sex",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Personne",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "reclamation",
+      "otherEntityRelationshipName": "personne",
+      "relationshipName": "reclamation",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

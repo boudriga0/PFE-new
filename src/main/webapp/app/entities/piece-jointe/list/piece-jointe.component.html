@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="PieceJointeHeading">
+    <span reclamationTranslate="pfeApp.pieceJointe.home.title">PieceJointes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span reclamationTranslate="pfeApp.pieceJointe.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-piece-jointe"
+        [routerLink]="['/piece-jointe/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span reclamationTranslate="pfeApp.pieceJointe.home.createLabel">Créer un nouveau Piece Jointe</span>
+      </button>
+    </div>
+  </h2>
+
+  <reclamation-alert-error></reclamation-alert-error>
+
+  <reclamation-alert></reclamation-alert>
+
+  <reclamation-filter [filters]="filters"></reclamation-filter>
+
+  @if (pieceJointes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span reclamationTranslate="pfeApp.pieceJointe.home.notFound">Aucun Piece Jointe trouvé</span>
+    </div>
+  }
+
+  @if (pieceJointes && pieceJointes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" reclamationSortBy="id">
+              <div class="d-flex">
+                <span reclamationTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="url">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.pieceJointe.url">Url</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="type">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.pieceJointe.type">Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="data">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.pieceJointe.data">Data</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="reclamation.id">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.pieceJointe.reclamation">Reclamation</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pieceJointe of pieceJointes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/piece-jointe', pieceJointe.id, 'view']">{{ pieceJointe.id }}</a>
+              </td>
+              <td>{{ pieceJointe.url }}</td>
+              <td>{{ pieceJointe.type }}</td>
+              <td>{{ pieceJointe.data }}</td>
+              <td>
+                @if (pieceJointe.reclamation) {
+                  <div>
+                    <a [routerLink]="['/reclamation', pieceJointe.reclamation.id, 'view']">{{ pieceJointe.reclamation.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/piece-jointe', pieceJointe.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/piece-jointe', pieceJointe.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(pieceJointe)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (pieceJointes && pieceJointes.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

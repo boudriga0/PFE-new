@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pieceJointe) {
+      <div>
+        <h2 data-cy="pieceJointeDetailsHeading"><span reclamationTranslate="pfeApp.pieceJointe.detail.title">Piece Jointe</span></h2>
+
+        <hr />
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span reclamationTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pieceJointe.id }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.pieceJointe.url">Url</span></dt>
+          <dd>
+            <span>{{ pieceJointe.url }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.pieceJointe.type">Type</span></dt>
+          <dd>
+            <span>{{ pieceJointe.type }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.pieceJointe.data">Data</span></dt>
+          <dd>
+            <span>{{ pieceJointe.data }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.pieceJointe.reclamation">Reclamation</span></dt>
+          <dd>
+            @if (pieceJointe.reclamation) {
+              <div>
+                <a [routerLink]="['/reclamation', pieceJointe.reclamation.id, 'view']">{{ pieceJointe.reclamation.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/piece-jointe', pieceJointe.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

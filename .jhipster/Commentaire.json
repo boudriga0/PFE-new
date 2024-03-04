@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20240209110104"
+  },
+  "applications": ["pfe"],
+  "dto": "mapstruct",
+  "entityTableName": "commentaire",
+  "fields": [
+    {
+      "fieldName": "contenu",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Commentaire",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "reclamation",
+      "otherEntityRelationshipName": "commentaire",
+      "relationshipName": "reclamation",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

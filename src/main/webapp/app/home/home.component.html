@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des réclamations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        color: #333333;
+      }
+      .page-container {
+        background-color: #f5f5f5;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .image-container {
+        flex: 0 0 30%;
+        margin-right: 20px;
+      }
+      .image-container img {
+        width: 100%;
+        height: auto;
+      }
+      .main-content {
+        flex: 1;
+      }
+      h1,
+      p {
+        font-family: 'Montserrat', sans-serif;
+      }
+      h1 {
+        font-weight: 900;
+        font-size: 48px;
+        margin-bottom: 1em;
+      }
+      p {
+        font-size: 20px;
+        margin-bottom: 25px;
+        font-family: 'Arial', sans-serif;
+      }
+      .question-text {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      footer {
+        text-align: center;
+        padding: 5px;
+        background-color: #f5f5f5;
+        color: #000;
+        margin-top: 20px;
+        font-family: 'Arial', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="row">
+        <div class="col-md-3 image-container">
+          <img src="../../content/images/photo.png" alt="Photo" />
+        </div>
+
+        <div class="col-md-9 main-content">
+          <h1>Gestion des réclamations</h1>
+          <p>
+            Application web de gestion des réclamations est un outil informatique pour aider la société à traiter efficacement les plaintes
+            et les retours des clients. Permettant ainsi aux entreprises d’améliorer la satisfaction client et de résoudre rapidement les
+            problèmes.
+          </p>
+
+          <div style="margin-bottom: 80px"></div>
+
+          <p>
+            La gestion des réclamations est une composante essentielle de toute entreprise soucieuse de la satisfaction de sa clientèle.
+            Notre application de gestion des réclamations vise à simplifier et à rationaliser ce processus crucial. En offrant une
+            plateforme centralisée et conviviale, notre application permet aux entreprises de recevoir, de suivre et de résoudre les
+            plaintes des clients de manière efficace et transparente. Grâce à des fonctionnalités avancées telles que la classification
+            automatique des réclamations, la gestion des délais et des priorités, ainsi que la génération de rapports détaillés, notre
+            application permet aux équipes chargées de la résolution des réclamations de travailler de manière plus organisée et plus
+            rapide. De plus, notre application intègre des outils de communication en temps réel, facilitant ainsi la collaboration entre
+            les différents départements impliqués dans le processus de résolution des réclamations. En investissant dans notre application
+            de gestion des réclamations, les entreprises peuvent non seulement améliorer l'expérience client, mais aussi optimiser leurs
+            processus internes et renforcer leur réputation en tant qu'organisation axée sur la satisfaction client.
+          </p>
+
+          <div style="margin-bottom: 60px"></div>
+
+          <p class="question-text">Si vous avez des questions à propos notre société :</p>
+
+          <ul>
+            <li>
+              <a href="https://www.gpro-consulting.com/" target="_blank" rel="noopener noreferrer">Page d'accueil de GPRO consulting</a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/gpro-consulting/" target="_blank" rel="noopener noreferrer"
+                >GPRO consulting sur Linkedin</a
+              >
+            </li>
+            <li>
+              <a href="https://www.facebook.com/profile.php?id=100057043189576" target="_blank" rel="noopener noreferrer"
+                >GPRO consulting sur Facebook</a
+              >
+            </li>
+            <li>
+              <a href="https://www.instagram.com/gproconsulting/" target="_blank" rel="noopener noreferrer"
+                >GPRO consulting sur Instagram</a
+              >
+            </li>
+          </ul>
+          <div class="alert alert-warning">
+            <span style="font-family: 'Arial', sans-serif; font-size: 18px; color: #333333">Vous n&apos;avez pas encore de compte ?</span>
+            <a
+              class="alert-link"
+              routerLink="/account/register"
+              style="font-family: 'Arial', sans-serif; font-size: 18px; font-weight: bold; color: #333333; text-decoration: none"
+              >Créer un compte</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <small>Copyright © 2024 . Tous droits réservés.</small>
+    </footer>
+  </body>
+</html>

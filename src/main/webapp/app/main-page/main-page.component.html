@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .left-section {
+        width: 35%;
+        background-color: #fdf4f7;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 100px;
+        padding-top: 20px;
+      }
+
+      .right-section {
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #d5eff8;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .vertical-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: black;
+        left: 0;
+      }
+
+      .send-button-container {
+        margin-top: 20px;
+      }
+
+      .send-button,
+      .send-button-top {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .send-button-top {
+        background-color: #008cba;
+      }
+
+      .additional-text-container {
+        position: relative;
+        width: 80%;
+        margin-top: 20px;
+      }
+
+      .additional-text {
+        width: 100%;
+        height: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        resize: none;
+        margin-top: 10px;
+      }
+
+      .attachment-icon {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        color: #888;
+        cursor: pointer;
+      }
+
+      label {
+        font-size: 18px;
+      }
+
+      input[type='text'] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        font-size: 18px;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        z-index: 1;
+        position: relative;
+        text-align: left;
+      }
+
+      .dropdown select {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        font-family: 'Arial', sans-serif;
+      }
+
+      .dropdown select:focus {
+        outline: none;
+      }
+
+      .dropdown option {
+        font-size: 16px;
+      }
+
+      .left-section h2 {
+        color: white;
+        background-color: #a80023;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 0;
+      }
+      .right-section h3 {
+        color: white;
+        background-color: #008cba;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left-section">
+      <h2 class="title">RECLAMATION</h2>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <div class="dropdown">
+          <label for="reclamations">Sélectionnez:</label>
+          <select id="reclamations">
+            <option value="reclamations">Liste des réclamations</option>
+            <option value="corrigees">Liste des corrigées</option>
+          </select>
+        </div>
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_USER'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <div class="dropdown">
+          <label for="reclamations">Sélectionnez:</label>
+          <select id="reclamations">
+            <option value="reclamations">Mes réclamations</option>
+            <option value="corrigees">Mes corrigées</option>
+          </select>
+        </div>
+      </li>
+    </div>
+    <div class="right-section">
+      <h3>Section de Soumission de Réclamations</h3>
+      <div class="vertical-line"></div>
+
+      <li
+        *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <form>
+          <div class="additional-text-container">
+            <label for="purpose">Object :</label>
+            <input type="text" id="purpose" name="purpose" placeholder="Écrivez l'objectif ici..." />
+            <textarea class="additional-text" placeholder="Écrivez ici..."></textarea>
+            <input type="file" id="fileInput" style="display: none" onchange="attachFile(this)" />
+            <span class="attachment-icon" onclick="document.getElementById('fileInput').click()"><i class="fas fa-paperclip"></i></span>
+          </div>
+          <div class="send-button-container">
+            <button class="send-button">Envoyer au Client</button>
+            <button class="send-button-top">Envoyer au équipe dev</button>
+          </div>
+        </form>
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_USER'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <form action="/api/reclamations" method="post" enctype="multipart/form-data">
+          <div class="additional-text-container">
+            <label for="purpose">Object :</label>
+            <input type="text" id="purpose" name="purpose" placeholder="Écrivez l'objectif ici..." />
+            <textarea class="additional-text" name="description" placeholder="Écrivez ici..."></textarea>
+            <input type="file" id="fileInput" name="file" style="display: none" onchange="attachFile(this)" />
+            <span class="attachment-icon" onclick="document.getElementById('fileInput').click()"><i class="fas fa-paperclip"></i></span>
+          </div>
+          <div class="send-button-container">
+            <button class="send-button" type="submit" (click)="sendDev()">Envoyer</button>
+          </div>
+        </form>
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_DEV'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <form>
+          <div class="additional-text-container">
+            <label for="purpose">Object :</label>
+            <input type="text" id="purpose" name="purpose" placeholder="Écrivez l'objectif ici..." />
+            <textarea class="additional-text" placeholder="Écrivez ici..."></textarea>
+            <input type="file" id="fileInput" style="display: none" onchange="attachFile(this)" />
+            <span class="attachment-icon" onclick="document.getElementById('fileInput').click()"><i class="fas fa-paperclip"></i></span>
+          </div>
+          <div class="send-button-container">
+            <button class="send-button">Envoyer au responsable</button>
+          </div>
+        </form>
+      </li>
+    </div>
+  </body>
+</html>

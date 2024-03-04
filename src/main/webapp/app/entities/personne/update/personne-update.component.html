@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="reclamation-personne-heading"
+        data-cy="PersonneCreateUpdateHeading"
+        reclamationTranslate="pfeApp.personne.home.createOrEditLabel"
+      >
+        Créer ou éditer un Personne
+      </h2>
+
+      <div>
+        <reclamation-alert-error></reclamation-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" reclamationTranslate="global.field.id" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.cIN" for="field_cIN">C IN</label>
+          <input type="text" class="form-control" name="cIN" id="field_cIN" data-cy="cIN" formControlName="cIN" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.phone" for="field_phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.rib" for="field_rib">Rib</label>
+          <input type="text" class="form-control" name="rib" id="field_rib" data-cy="rib" formControlName="rib" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.personne.sex" for="field_sex">Sex</label>
+          <input type="text" class="form-control" name="sex" id="field_sex" data-cy="sex" formControlName="sex" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+application {
+
+  config {
+    applicationType monolith
+    baseName pfe
+    packageName com.reclamation.pfe
+    authenticationType jwt
+    buildTool maven
+    cacheProvider ehcache
+    databaseType sql
+    devDatabaseType postgresql
+    prodDatabaseType postgresql
+    serverPort 8181
+    jhiPrefix reclamation
+    nativeLanguage fr
+    languages [fr]
+
+  }
+
+  entities *
+}
+
+
+entity Personne {
+	nom String,
+	prenom String,
+	CIN String,
+    dateNaissance LocalDate,
+    phone String,
+    rib String,
+    email String ,
+    sex String
+}
+
+entity Reclamation {
+    categorie String,
+    etat String,
+    numero String,
+    date LocalDate
+}
+
+entity Commentaire {
+    contenu String
+}
+
+entity PieceJointe {
+    url String,
+    type String,
+    data String
+}
+
+
+
+
+relationship OneToMany {
+  Reclamation to PieceJointe
+  Reclamation to Commentaire
+  Personne to Reclamation
+
+}
+
+
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+filter *

@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="CommentaireHeading">
+    <span reclamationTranslate="pfeApp.commentaire.home.title">Commentaires</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span reclamationTranslate="pfeApp.commentaire.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-commentaire"
+        [routerLink]="['/commentaire/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span reclamationTranslate="pfeApp.commentaire.home.createLabel">Créer un nouveau Commentaire</span>
+      </button>
+    </div>
+  </h2>
+
+  <reclamation-alert-error></reclamation-alert-error>
+
+  <reclamation-alert></reclamation-alert>
+
+  <reclamation-filter [filters]="filters"></reclamation-filter>
+
+  @if (commentaires?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span reclamationTranslate="pfeApp.commentaire.home.notFound">Aucun Commentaire trouvé</span>
+    </div>
+  }
+
+  @if (commentaires && commentaires.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" reclamationSortBy="id">
+              <div class="d-flex">
+                <span reclamationTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="contenu">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.commentaire.contenu">Contenu</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" reclamationSortBy="reclamation.id">
+              <div class="d-flex">
+                <span reclamationTranslate="pfeApp.commentaire.reclamation">Reclamation</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (commentaire of commentaires; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/commentaire', commentaire.id, 'view']">{{ commentaire.id }}</a>
+              </td>
+              <td>{{ commentaire.contenu }}</td>
+              <td>
+                @if (commentaire.reclamation) {
+                  <div>
+                    <a [routerLink]="['/reclamation', commentaire.reclamation.id, 'view']">{{ commentaire.reclamation.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/commentaire', commentaire.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/commentaire', commentaire.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(commentaire)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (commentaires && commentaires.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

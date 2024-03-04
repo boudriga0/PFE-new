@@ -1,0 +1,32 @@
+@if (pieceJointe) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(pieceJointe.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="pieceJointeDeleteDialogHeading" reclamationTranslate="entity.delete.title">
+        Confirmation de suppression
+      </h4>
+
+      <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <reclamation-alert-error></reclamation-alert-error>
+      <p
+        id="reclamation-delete-pieceJointe-heading"
+        reclamationTranslate="pfeApp.pieceJointe.delete.question"
+        [translateValues]="{ id: pieceJointe.id }"
+      >
+        Êtes-vous certain de vouloir supprimer le Piece Jointe {{ pieceJointe.id }} ?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
+      </button>
+
+      <button id="reclamation-confirm-delete-pieceJointe" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.delete">Supprimer</span>
+      </button>
+    </div>
+  </form>
+}

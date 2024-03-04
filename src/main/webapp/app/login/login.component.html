@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .content-wrapper {
+        padding-top: 1rem; /* Décalage supplémentaire vers le haut */
+        margin: 10px; /* Ajout d'un petit espace autour du cadre */
+      }
+
+      .content {
+        background-color: #f0f0f0; /* Couleur de fond claire */
+        border: 3px solid #4e4eff; /* Ajout de la bordure bleue */
+        border-radius: 10px; /* Arrondir les coins */
+        padding: 20px; /* Ajouter un peu d'espace intérieur */
+        margin: 10px; /* Ajout d'un petit espace autour du contenu */
+        width: 70%; /* Réduire la largeur du contenu */
+        margin: auto; /* Centrer le contenu horizontalement */
+      }
+
+      /* Ajustement de la marge de la dernière div */
+      .alert-warning:last-child {
+        margin-bottom: 0;
+      }
+
+      .content h1,
+      .content label,
+      .content input,
+      .content button,
+      .content .alert {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        color: #333333;
+      }
+
+      /* Ajustement de la taille de la photo */
+      .content img {
+        max-width: 150px; /* Augmenter la largeur maximale de l'image */
+        height: auto; /* Conserver les proportions */
+        display: block; /* Afficher l'image en tant que bloc */
+        margin: 0 auto 20px auto; /* Centrer l'image et ajouter un espace en bas */
+      }
+
+      /* Ajustement de la taille du cadre et du fond */
+      .content-wrapper {
+        width: 80%; /* Réduire la largeur */
+        margin: auto; /* Centrer horizontalement */
+        background-size: cover; /* Ajustement du fond */
+      }
+
+      /* Ajustement de la taille de la zone de contenu */
+      .col-lg-6 {
+        width: 100%;
+      }
+
+      /* Ajustement de la largeur des champs nom et mot de passe */
+      .form-control {
+        width: calc(100% - 40px); /* Largeur moins les marges */
+        margin: auto; /* Centrage */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="content-wrapper">
+        <div class="content">
+          <div style="margin-top: 0rem; margin-bottom: 11rem">
+            <div class="d-flex justify-content-center">
+              <div class="col-lg-6 col-md-8 col-sm-10">
+                <img src="/content/images/login.png" alt="Authentification" data-cy="loginImage" />
+                <h1 data-cy="loginTitle" style="font-size: 36px; font-weight: bold; text-align: center; text-transform: uppercase">
+                  Authentification
+                </h1>
+                @if (authenticationError) {
+                  <div class="alert alert-danger" reclamationTranslate="login.messages.error.authentication" data-cy="loginError">
+                    <strong>Erreur d&apos;authentification !</strong> Veuillez vérifier vos identifiants de connexion.
+                  </div>
+                }
+                <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+                  <div class="mb-3">
+                    <label class="username-label" for="username">nom d'utilisateur</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="username"
+                      id="username"
+                      formControlName="username"
+                      #username
+                      data-cy="username"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="password">Mot de passe</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      id="password"
+                      formControlName="password"
+                      data-cy="password"
+                    />
+                  </div>
+
+                  <div class="form-check">
+                    <label class="form-check-label" for="rememberMe">
+                      <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+                      <span>Garder la session ouverte</span>
+                    </label>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" data-cy="submit">Connexion</button>
+                </form>
+
+                <div class="alert alert-warning">
+                  <span>Vous n&apos;avez pas encore de compte ?</span>
+                  <a class="alert-link" routerLink="/account/register" reclamationTranslate="global.messages.info.register.link"
+                    >Créer un compte</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer></footer>
+    </div>
+  </body>
+</html>

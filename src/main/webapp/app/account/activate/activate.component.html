@@ -1,0 +1,21 @@
+<div>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+      <h1 reclamationTranslate="activate.title">Activation</h1>
+      @if (success) {
+        <div class="alert alert-success">
+          <span reclamationTranslate="activate.messages.success"
+            ><strong>Votre compte utilisateur a été activé.</strong> Merci de vous
+          </span>
+          <a class="alert-link" routerLink="/login" reclamationTranslate="global.messages.info.authenticated.link">connecter</a>.
+        </div>
+      }
+      @if (error) {
+        <div class="alert alert-danger" reclamationTranslate="activate.messages.error">
+          <strong>Votre compte utilisateur n&apos;a pas pu être activé.</strong> Utilisez le formulaire d&apos;enregistrement pour en créer
+          un nouveau.
+        </div>
+      }
+    </div>
+  </div>
+</div>
