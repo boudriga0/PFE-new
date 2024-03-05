@@ -1,161 +1,136 @@
-<div>
-  <h2 id="page-heading" data-cy="ReclamationHeading">
-    <span reclamationTranslate="pfeApp.reclamation.home.title">Reclamations</span>
+<div class="container">
+  <div class="row">
+    <!-- Partie Gauche -->
+    <div class="col-md-6">
+      <h2 id="page-heading" data-cy="ReclamationHeading">
+        <span reclamationTranslate="pfeApp.reclamation.home.title">Reclamations</span>
+      </h2>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span reclamationTranslate="pfeApp.reclamation.home.refreshListLabel">Actualiser la liste</span>
-      </button>
+      <reclamation-alert-error></reclamation-alert-error>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-reclamation"
-        [routerLink]="['/reclamation/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span reclamationTranslate="pfeApp.reclamation.home.createLabel">Créer un nouveau Reclamation</span>
-      </button>
-    </div>
-  </h2>
+      <reclamation-alert></reclamation-alert>
 
-  <reclamation-alert-error></reclamation-alert-error>
+      <reclamation-filter [filters]="filters"></reclamation-filter>
 
-  <reclamation-alert></reclamation-alert>
+      @if (reclamations?.length === 0) {
+      <div class="alert alert-warning" id="no-result">
+        <span reclamationTranslate="pfeApp.reclamation.home.notFound">Aucun Reclamation trouvé</span>
+      </div>
+        }
 
-  <reclamation-filter [filters]="filters"></reclamation-filter>
-
-  @if (reclamations?.length === 0) {
-    <div class="alert alert-warning" id="no-result">
-      <span reclamationTranslate="pfeApp.reclamation.home.notFound">Aucun Reclamation trouvé</span>
-    </div>
-  }
-
-  @if (reclamations && reclamations.length > 0) {
-    <div class="table-responsive table-entities" id="entities">
-      <table class="table table-striped" aria-describedby="page-heading">
+        @if (reclamations && reclamations.length > 0) {
+      <div class="table-responsive table-entities" id="entities">
+        <table class="table table-striped" aria-describedby="page-heading">
         <thead>
-          <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-            <th scope="col" reclamationSortBy="id">
-              <div class="d-flex">
-                <span reclamationTranslate="global.field.id">ID</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" reclamationSortBy="categorie">
-              <div class="d-flex">
-                <span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" reclamationSortBy="etat">
-              <div class="d-flex">
-                <span reclamationTranslate="pfeApp.reclamation.etat">Etat</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" reclamationSortBy="numero">
-              <div class="d-flex">
-                <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" reclamationSortBy="date">
-              <div class="d-flex">
-                <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" reclamationSortBy="personne.id">
-              <div class="d-flex">
-                <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col"></th>
-          </tr>
+        <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+        <th scope="col" reclamationSortBy="id">
+        <div class="d-flex">
+        <span reclamationTranslate="global.field.id">ID</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="categorie">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="etat">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.etat">Etat</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="numero">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="date">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="personne.id">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col"></th>
+        </tr>
         </thead>
         <tbody>
-          @for (reclamation of reclamations; track trackId) {
-            <tr data-cy="entityTable">
-              <td>
-                <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
-              </td>
-              <td>{{ reclamation.categorie }}</td>
-              <td>{{ reclamation.etat }}</td>
-              <td>{{ reclamation.numero }}</td>
-              <td>{{ reclamation.date | formatMediumDate }}</td>
-              <td>
-                @if (reclamation.personne) {
-                  <div>
-                    <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
-                  </div>
-                }
-              </td>
-              <td class="text-end">
-                <div class="btn-group">
-                  <button
-                    type="submit"
-                    [routerLink]="['/piece-jointe']"
-                    [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
-                    class="btn btn-info btn-sm"
-                    data-cy="filterOtherEntityButton"
-                  >
-                    <fa-icon icon="eye"></fa-icon>
-                    <span
-                      class="d-none d-md-inline"
-                      reclamationTranslate="entity.action.show"
-                      [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }"
-                      >Show Piece Jointe</span
-                    >
-                  </button>
-                  <button
-                    type="submit"
-                    [routerLink]="['/commentaire']"
-                    [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
-                    class="btn btn-info btn-sm"
-                    data-cy="filterOtherEntityButton"
-                  >
-                    <fa-icon icon="eye"></fa-icon>
-                    <span
-                      class="d-none d-md-inline"
-                      reclamationTranslate="entity.action.show"
-                      [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }"
-                      >Show Commentaire</span
-                    >
-                  </button>
-                  <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                    <fa-icon icon="eye"></fa-icon>
-                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
-                  </a>
+        @for (reclamation of reclamations; track trackId) {
+      <tr data-cy="entityTable">
+      <td>
+      <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+      </td>
+      <td>{{ reclamation.categorie }}</td>
+      <td>{{ reclamation.etat }}</td>
+      <td>{{ reclamation.numero }}</td>
+      <td>{{ reclamation.date | formatMediumDate }}</td>
+      <td>
+        @if (reclamation.personne) {
+      <div>
+      <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
+      </div>
+      }
+      </td>
+      <td class="text-end">
+        <div class="btn-group">
+          <button
+            type="submit"
+            [routerLink]="['/piece-jointe']"
+            [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
+            class="btn btn-info btn-sm"
+            data-cy="filterOtherEntityButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+            <span
+              class="d-none d-md-inline"
+              reclamationTranslate="entity.action.show"
+              [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }"
+            >Show Piece Jointe</span>
+          </button>
+          <button
+            type="submit"
+            [routerLink]="['/commentaire']"
+            [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
+            class="btn btn-info btn-sm"
+            data-cy="filterOtherEntityButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+            <span
+              class="d-none d-md-inline"
+              reclamationTranslate="entity.action.show"
+              [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }"
+            >Show Commentaire</span>
+          </button>
+          <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+          </a>
+          <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+          </a>
+          <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <fa-icon icon="times"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+          </button>
+        </div>
+      </td>
+      </tr>
+      }
+      </tbody>
+    </table>
+  </div>
 
-                  <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                    <fa-icon icon="pencil-alt"></fa-icon>
-                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
-                  </a>
-
-                  <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                    <fa-icon icon="times"></fa-icon>
-                    <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  }
-  @if (reclamations && reclamations.length > 0) {
-    <div>
-      <div class="d-flex justify-content-center">
-        <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+  <div class="d-flex justify-content-center">
+    <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
       </div>
 
       <div class="d-flex justify-content-center">
@@ -169,7 +144,178 @@
           (pageChange)="navigateToPage($event)"
         ></ngb-pagination>
       </div>
+      }
     </div>
-  }
+    <!-- Partie Droite -->
+    <div class="col-md-6">
+      <h2 id="page-heading" data-cy="ReclamationHeading">
+        <span>Corrections</span>
+      </h2>
+
+      <reclamation-alert-error></reclamation-alert-error>
+
+      <reclamation-alert></reclamation-alert>
+
+      <reclamation-filter [filters]="filters"></reclamation-filter>
+
+      @if (reclamations?.length === 0) {
+      <div class="alert alert-warning" id="no-result">
+        <span reclamationTranslate="pfeApp.reclamation.home.notFound">Aucun Reclamation trouvé</span>
+      </div>
+        }
+
+        @if (reclamations && reclamations.length > 0) {
+      <div class="table-responsive table-entities" id="entities">
+        <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+        <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+        <th scope="col" reclamationSortBy="id">
+        <div class="d-flex">
+        <span reclamationTranslate="global.field.id">ID</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="categorie">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="etat">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.etat">Etat</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="numero">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="date">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col" reclamationSortBy="personne.id">
+        <div class="d-flex">
+        <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+        </div>
+        </th>
+        <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @for (reclamation of reclamations; track trackId) {
+      <tr data-cy="entityTable">
+      <td>
+      <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+      </td>
+      <td>{{ reclamation.categorie }}</td>
+      <td>{{ reclamation.etat }}</td>
+      <td>{{ reclamation.numero }}</td>
+      <td>{{ reclamation.date | formatMediumDate }}</td>
+      <td>
+        @if (reclamation.personne) {
+      <div>
+      <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
+      </div>
+      }
+      </td>
+      <td class="text-end">
+        <div class="btn-group">
+          <button
+            type="submit"
+            [routerLink]="['/piece-jointe']"
+            [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
+            class="btn btn-info btn-sm"
+            data-cy="filterOtherEntityButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+            <span
+              class="d-none d-md-inline"
+              reclamationTranslate="entity.action.show"
+              [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }"
+            >Show Piece Jointe</span>
+          </button>
+          <button
+            type="submit"
+            [routerLink]="['/commentaire']"
+            [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }"
+            class="btn btn-info btn-sm"
+            data-cy="filterOtherEntityButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+            <span
+              class="d-none d-md-inline"
+              reclamationTranslate="entity.action.show"
+              [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }"
+            >Show Commentaire</span>
+          </button>
+          <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+          </a>
+          <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+          </a>
+          <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <fa-icon icon="times"></fa-icon>
+            <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+          </button>
+        </div>
+      </td>
+      </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+      }
+      <div class="d-flex justify-content-center mt-2">
+        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span reclamationTranslate="pfeApp.reclamation.home.refreshListLabel">Actualiser la liste</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-<div></div>
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-6 offset-md-6">
+      <div class="text-center">
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-reclamation"
+          [routerLink]="['/reclamation/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span reclamationTranslate="pfeApp.reclamation.home.createLabel">Créer un nouveau Reclamation</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

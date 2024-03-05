@@ -12,12 +12,14 @@ import { PersonneService } from 'app/entities/personne/service/personne.service'
 import { IReclamation } from '../reclamation.model';
 import { ReclamationService } from '../service/reclamation.service';
 import { ReclamationFormService, ReclamationFormGroup } from './reclamation-form.service';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation-update',
   templateUrl: './reclamation-update.component.html',
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgbModule ],
 })
 export class ReclamationUpdateComponent implements OnInit {
   isSaving = false;
@@ -54,6 +56,8 @@ export class ReclamationUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
+
+    reclamation.etat = "notVerified";
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {

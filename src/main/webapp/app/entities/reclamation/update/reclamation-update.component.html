@@ -1,87 +1,61 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="reclamation-reclamation-heading"
-        data-cy="ReclamationCreateUpdateHeading"
-        reclamationTranslate="pfeApp.reclamation.home.createOrEditLabel"
-      >
-        Créer ou éditer un Reclamation
+      <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 24px;">
+        Créer  une Reclamation
       </h2>
 
       <div>
         <reclamation-alert-error></reclamation-alert-error>
 
         @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" reclamationTranslate="global.field.id" for="field_id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="global.field.id" for="field_id" style="font-family: Arial, sans-serif; font-weight: bold;">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
         }
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.reclamation.categorie" for="field_categorie">Categorie</label>
+          <label class="form-label" for="field_categorie" style="font-family: Arial, sans-serif; font-weight: bold;">objectif</label>
           <input type="text" class="form-control" name="categorie" id="field_categorie" data-cy="categorie" formControlName="categorie" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.reclamation.etat" for="field_etat">Etat</label>
+          <label class="form-label"  for="field_etat" style="font-family: Arial, sans-serif; font-weight: bold;">État</label>
           <input type="text" class="form-control" name="etat" id="field_etat" data-cy="etat" formControlName="etat" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.reclamation.numero" for="field_numero">Numero</label>
+          <label class="form-label"  for="field_numero" style="font-family: Arial, sans-serif; font-weight: bold;">Numéro</label>
           <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.reclamation.date" for="field_date">Date</label>
+          <label class="form-label"  for="field_date" style="font-family: Arial, sans-serif; font-weight: bold;">Date</label>
           <div class="input-group">
-            <input
-              id="field_date"
-              data-cy="date"
-              type="text"
-              class="form-control"
-              name="date"
-              ngbDatepicker
-              #dateDp="ngbDatepicker"
-              formControlName="date"
-            />
+            <input id="field_date" data-cy="date" type="text" class="form-control" name="date" ngbDatepicker #dateDp="ngbDatepicker" formControlName="date" />
             <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.reclamation.personne" for="field_personne">Personne</label>
-          <select
-            class="form-control"
-            id="field_personne"
-            data-cy="personne"
-            name="personne"
-            formControlName="personne"
-            [compareWith]="comparePersonne"
-          >
+          <label class="form-label"  for="field_personne" style="font-family: Arial, sans-serif; font-weight: bold;">Personne</label>
+          <select class="form-control" id="field_personne" data-cy="personne" name="personne" formControlName="personne" [compareWith]="comparePersonne">
             <option [ngValue]="null"></option>
             @for (personneOption of personnesSharedCollection; track $index) {
-              <option [ngValue]="personneOption">{{ personneOption.id }}</option>
+            <option [ngValue]="personneOption">{{ personneOption.id }}</option>
             }
           </select>
         </div>
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()" style="font-family: Arial, sans-serif;">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
 
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.save">Sauvegarder</span>
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary" style="font-family: Arial, sans-serif;">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
         </button>
       </div>
     </form>

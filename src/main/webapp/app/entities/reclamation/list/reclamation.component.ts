@@ -136,6 +136,7 @@ export class ReclamationComponent implements OnInit {
       size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
+    queryObject['etat.equals'] = "notVerified"
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;
     });
