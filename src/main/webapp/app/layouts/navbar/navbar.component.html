@@ -29,7 +29,7 @@
           </a>
         </li>
 
-        <a class="nav-link" routerLink="/main-page" (click)="collapseNavbar()">
+        <a class="nav-link" routerLink="/reclamation" (click)="collapseNavbar()">
           @if (account !== null) {
             <li
               ngbDropdown
@@ -44,126 +44,128 @@
         </a>
 
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-        @if (account !== null) {
+        <!--
+    @if (account !== null) {
+            <li
+              ngbDropdown
+              class="nav-item dropdown pointer"
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+                <span>
+                  <fa-icon icon="th-list"></fa-icon>
+                  <span reclamationTranslate="global.menu.entities.main">Entités</span>
+                </span>
+              </a>
+              <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="/personne"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="collapseNavbar()"
+                  >
+                    <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                    <span reclamationTranslate="global.menu.entities.personne">Personne</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="/reclamation"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="collapseNavbar()"
+                  >
+                    <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                    <span reclamationTranslate="global.menu.entities.reclamation">Reclamation</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="/commentaire"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="collapseNavbar()"
+                  >
+                    <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                    <span reclamationTranslate="global.menu.entities.commentaire">Commentaire</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="/piece-jointe"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="collapseNavbar()"
+                  >
+                    <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                    <span reclamationTranslate="global.menu.entities.pieceJointe">Piece Jointe</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          }
+          -->
           <li
+            *reclamationHasAnyAuthority="'ROLE_ADMIN'"
             ngbDropdown
             class="nav-item dropdown pointer"
             display="dynamic"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
               <span>
-                <fa-icon icon="th-list"></fa-icon>
-                <span reclamationTranslate="global.menu.entities.main">Entités</span>
+                <fa-icon icon="users-cog"></fa-icon>
+                <span reclamationTranslate="global.menu.admin.main">Administration</span>
               </span>
             </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
               <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/personne"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span reclamationTranslate="global.menu.entities.personne">Personne</span>
+                <a class="dropdown-item" routerLink="/admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
+                  <span reclamationTranslate="global.menu.admin.userManagement">Gestion des utilisateurs</span>
                 </a>
               </li>
               <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/reclamation"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span reclamationTranslate="global.menu.entities.reclamation">Reclamation</span>
+                <a class="dropdown-item" routerLink="/admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="tachometer-alt" [fixedWidth]="true"></fa-icon>
+                  <span reclamationTranslate="global.menu.admin.metrics">Métriques</span>
                 </a>
               </li>
               <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/commentaire"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span reclamationTranslate="global.menu.entities.commentaire">Commentaire</span>
+                <a class="dropdown-item" routerLink="/admin/health" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="heart" [fixedWidth]="true"></fa-icon>
+                  <span reclamationTranslate="global.menu.admin.health">Diagnostics</span>
                 </a>
               </li>
               <li>
-                <a
-                  class="dropdown-item"
-                  routerLink="/piece-jointe"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="collapseNavbar()"
-                >
-                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                  <span reclamationTranslate="global.menu.entities.pieceJointe">Piece Jointe</span>
+                <a class="dropdown-item" routerLink="/admin/configuration" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="cogs" [fixedWidth]="true"></fa-icon>
+                  <span reclamationTranslate="global.menu.admin.configuration">Configuration</span>
                 </a>
               </li>
-            </ul>
-          </li>
-        }
-        <li
-          *reclamationHasAnyAuthority="'ROLE_ADMIN'"
-          ngbDropdown
-          class="nav-item dropdown pointer"
-          display="dynamic"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
-            <span>
-              <fa-icon icon="users-cog"></fa-icon>
-              <span reclamationTranslate="global.menu.admin.main">Administration</span>
-            </span>
-          </a>
-          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
-            <li>
-              <a class="dropdown-item" routerLink="/admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
-                <span reclamationTranslate="global.menu.admin.userManagement">Gestion des utilisateurs</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="tachometer-alt" [fixedWidth]="true"></fa-icon>
-                <span reclamationTranslate="global.menu.admin.metrics">Métriques</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/admin/health" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="heart" [fixedWidth]="true"></fa-icon>
-                <span reclamationTranslate="global.menu.admin.health">Diagnostics</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/admin/configuration" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="cogs" [fixedWidth]="true"></fa-icon>
-                <span reclamationTranslate="global.menu.admin.configuration">Configuration</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/admin/logs" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="tasks" [fixedWidth]="true"></fa-icon>
-                <span reclamationTranslate="global.menu.admin.logs">Logs</span>
-              </a>
-            </li>
-            @if (openAPIEnabled) {
               <li>
-                <a class="dropdown-item" routerLink="/admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
-                  <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
-                  <span reclamationTranslate="global.menu.admin.apidocs">API</span>
+                <a class="dropdown-item" routerLink="/admin/logs" routerLinkActive="active" (click)="collapseNavbar()">
+                  <fa-icon icon="tasks" [fixedWidth]="true"></fa-icon>
+                  <span reclamationTranslate="global.menu.admin.logs">Logs</span>
                 </a>
               </li>
-            }
-            <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+              @if (openAPIEnabled) {
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
+                    <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+                    <span reclamationTranslate="global.menu.admin.apidocs">API</span>
+                  </a>
+                </li>
+              }
+              <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
           </ul>
         </li>
         @if (languages && languages.length > 1) {

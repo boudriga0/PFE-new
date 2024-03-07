@@ -14,7 +14,6 @@ import { ReclamationService } from '../service/reclamation.service';
 import { ReclamationFormService, ReclamationFormGroup } from './reclamation-form.service';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
-
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation-update',
@@ -22,6 +21,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   imports: [SharedModule, FormsModule, ReactiveFormsModule, NgbModule ],
 })
 export class ReclamationUpdateComponent implements OnInit {
+
   isSaving = false;
   reclamation: IReclamation | null = null;
 
