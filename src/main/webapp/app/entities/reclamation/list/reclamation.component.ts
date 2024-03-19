@@ -16,23 +16,25 @@ import { IReclamation } from '../reclamation.model';
 
 import { EntityArrayResponseType, ReclamationService } from '../service/reclamation.service';
 import { ReclamationDeleteDialogComponent } from '../delete/reclamation-delete-dialog.component';
+import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
 
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation',
   templateUrl: './reclamation.component.html',
-  imports: [
-    RouterModule,
-    FormsModule,
-    SharedModule,
-    SortDirective,
-    SortByDirective,
-    DurationPipe,
-    FormatMediumDatetimePipe,
-    FormatMediumDatePipe,
-    FilterComponent,
-    ItemCountComponent,
-  ],
+    imports: [
+        RouterModule,
+        FormsModule,
+        SharedModule,
+        SortDirective,
+        SortByDirective,
+        DurationPipe,
+        FormatMediumDatetimePipe,
+        FormatMediumDatePipe,
+        FilterComponent,
+        ItemCountComponent,
+        HasAnyAuthorityDirective,
+    ],
 })
 export class ReclamationComponent implements OnInit {
   reclamations?: IReclamation[];

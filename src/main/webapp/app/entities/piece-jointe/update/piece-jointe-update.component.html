@@ -1,41 +1,30 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="reclamation-piece-jointe-heading"
-        data-cy="PieceJointeCreateUpdateHeading"
-        reclamationTranslate="pfeApp.pieceJointe.home.createOrEditLabel"
-      >
-        Créer ou éditer un Piece Jointe
+      <h2 id="reclamation-piece-jointe-heading" data-cy="PieceJointeCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
+        Ajouter <span style="font-weight: normal; color:black;">Pièce Jointe</span>
       </h2>
 
       <div>
         <reclamation-alert-error></reclamation-alert-error>
 
-        @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" reclamationTranslate="global.field.id" for="field_id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
-        }
+        <div *ngIf="editForm.controls.id.value !== null" class="mb-3">
+          <label class="form-label" reclamationTranslate="global.field.id" for="field_id" style="font-weight: bold; color: black;">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.pieceJointe.url" for="field_url">Url</label>
+          <label class="form-label" for="field_url" style="font-weight: bold; color: black;">Nom</label>
           <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.pieceJointe.type" for="field_type">Type</label>
-          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+          <label class="form-label" for="field_piece_jointe" style="font-family: Arial, sans-serif; font-weight: bold; color: black;">Pièce jointe</label>
+          <input type="file" class="form-control" name="piece_jointe" id="field_piece_jointe" data-cy="piece_jointe" formControlName="piece_jointe" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.pieceJointe.data" for="field_data">Data</label>
-          <input type="text" class="form-control" name="data" id="field_data" data-cy="data" formControlName="data" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.pieceJointe.reclamation" for="field_reclamation">Reclamation</label>
+          <label class="form-label" reclamationTranslate="pfeApp.pieceJointe.reclamation" for="field_reclamation" style="font-weight: bold; color: black;">Réclamation</label>
           <select
             class="form-control"
             id="field_reclamation"
@@ -45,16 +34,14 @@
             [compareWith]="compareReclamation"
           >
             <option [ngValue]="null"></option>
-            @for (reclamationOption of reclamationsSharedCollection; track $index) {
-              <option [ngValue]="reclamationOption">{{ reclamationOption.id }}</option>
-            }
+            <option *ngFor="let reclamationOption of reclamationsSharedCollection" [ngValue]="reclamationOption">{{ reclamationOption.id }}</option>
           </select>
         </div>
       </div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel" style="font-weight: bold;">Annuler</span>
         </button>
 
         <button
@@ -64,7 +51,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.save">Sauvegarder</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span style="font-weight: bold;">Sauvegarder</span>
         </button>
       </div>
     </form>

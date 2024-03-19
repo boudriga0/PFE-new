@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ import { CommentaireFormService, CommentaireFormGroup } from './commentaire-form
   standalone: true,
   selector: 'reclamation-commentaire-update',
   templateUrl: './commentaire-update.component.html',
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule,RouterModule],
 })
 export class CommentaireUpdateComponent implements OnInit {
   isSaving = false;

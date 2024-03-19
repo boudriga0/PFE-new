@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 24px;">
-        Créer  une Reclamation
+      <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
+        Créer  <span style="font-weight: normal;color:black;"> une Reclamation </span>
       </h2>
 
       <div>
@@ -14,21 +14,18 @@
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
         }
-
         <div class="mb-3">
-          <label class="form-label" for="field_categorie" style="font-family: Arial, sans-serif; font-weight: bold;">objectif</label>
+          <label class="form-label" for="field_categorie" style="font-family: Arial, sans-serif; font-weight: bold;">Nom du projet</label>
           <input type="text" class="form-control" name="categorie" id="field_categorie" data-cy="categorie" formControlName="categorie" />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label"  for="field_etat" style="font-family: Arial, sans-serif; font-weight: bold;">État</label>
-          <input type="text" class="form-control" name="etat" id="field_etat" data-cy="etat" formControlName="etat" />
-        </div>
+
 
         <div class="mb-3">
-          <label class="form-label"  for="field_numero" style="font-family: Arial, sans-serif; font-weight: bold;">Numéro</label>
-          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+          <label class="form-label" for="field_numero" style="font-family: Arial, sans-serif; font-weight: bold;">Plainte</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" style="height: 100px;" />
         </div>
+
 
         <div class="mb-3">
           <label class="form-label"  for="field_date" style="font-family: Arial, sans-serif; font-weight: bold;">Date</label>
@@ -47,6 +44,10 @@
             }
           </select>
         </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_piece_jointe" style="font-family: Arial, sans-serif; font-weight: bold;">Pièce jointe</label>
+          <input type="file" class="form-control" name="piece_jointe" id="field_piece_jointe" data-cy="piece_jointe" formControlName="piece_jointe" />
+        </div>
       </div>
 
       <div>
@@ -55,7 +56,7 @@
         </button>
 
         <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary" style="font-family: Arial, sans-serif;">
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
         </button>
       </div>
     </form>

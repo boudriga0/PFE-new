@@ -1,16 +1,318 @@
 <div class="container">
+  <li
+    *reclamationHasAnyAuthority="'ROLE_USER'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+  <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE CLIENT</h1>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE RESPONSABLE</h1>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_DEV'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE DEVELOPPEUR</h1>
+  </li>
+
   <div class="row">
+
     <div class="text-center mt-2">
       <button class="btn btn-info font-weight-bold" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Actualiser les listes</span>
       </button>
     </div>
+
     <div class="col-md-6">
-      <!-- Titre "Réclamations" -->
       <h2 class="text-center mt-4" id="reclamation-heading" data-cy="ReclamationHeading">
-        <span class="reclamation-title">Réclamations</span>
+        <strong class="reclamation-title" style="font-weight: bold; font-family: Arial, sans-serif;">Réclamations</strong>
       </h2>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_DEV'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <reclamation-filter [filters]="filters"></reclamation-filter>
+
+        @if (reclamations?.length === 0) {
+        <div class="alert alert-warning" id="no-result">
+          <span reclamationTranslate="pfeApp.reclamation.home.notFound">Aucun Reclamation trouvé</span>
+        </div>
+          }
+
+          @if (reclamations && reclamations.length > 0) {
+        <div class="table-responsive table-entities" id="entities">
+          <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+          <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" reclamationSortBy="id">
+          <div class="d-flex">
+          <span reclamationTranslate="global.field.id">ID</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="categorie">
+          <div class="d-flex">
+          <span>Nom projet</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="etat">
+          <div class="d-flex">
+          <span>Etat</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="numero">
+          <div class="d-flex">
+          <span>Plainte</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="date">
+          <div class="d-flex">
+          <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="personne.id">
+          <div class="d-flex">
+          <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          @for (reclamation of reclamations; track trackId) {
+          @if (reclamation.etat === 'Verified') {
+        <tr data-cy="entityTable">
+        <td>
+        <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+        </td>
+        <td>{{ reclamation.categorie }}</td>
+        <td>{{ reclamation.etat }}</td>
+        <td>{{ reclamation.numero }}</td>
+        <td>{{ reclamation.date | formatMediumDate }}</td>
+        <td>
+          @if (reclamation.personne) {
+        <div>
+        <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
+        </div>
+        }
+        </td>
+        <td class="text-end">
+          <div class="btn-group">
+            <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
+            </button>
+            <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }">Show Commentaire</span>
+            </button>
+            <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+            </a>
+            <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <fa-icon icon="pencil-alt"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+            </a>
+            <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <fa-icon icon="times"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+            </button>
+          </div>
+        </td>
+        </tr>
+        }
+        }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+        }
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_USER'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <reclamation-filter [filters]="filters"></reclamation-filter>
+
+        @if (reclamations?.length === 0) {
+        <div class="alert alert-warning" id="no-result">
+          <span reclamationTranslate="pfeApp.reclamation.home.notFound">Aucun Reclamation trouvé</span>
+        </div>
+          }
+
+          @if (reclamations && reclamations.length > 0) {
+        <div class="table-responsive table-entities" id="entities">
+          <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+          <tr reclamationSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" reclamationSortBy="id">
+          <div class="d-flex">
+          <span reclamationTranslate="global.field.id">ID</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="categorie">
+          <div class="d-flex">
+          <span>Nom projet</span>
+        <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="etat">
+          <div class="d-flex">
+          <span>Etat</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="numero">
+          <div class="d-flex">
+          <span>Plainte</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="date">
+          <div class="d-flex">
+          <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col" reclamationSortBy="personne.id">
+          <div class="d-flex">
+          <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
+          <fa-icon class="p-1" icon="sort"></fa-icon>
+          </div>
+          </th>
+          <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          @for (reclamation of reclamations; track trackId) {
+          @if (reclamation.etat === 'notVerified') {
+        <tr data-cy="entityTable">
+        <td>
+        <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+        </td>
+        <td>{{ reclamation.categorie }}</td>
+        <td>{{ reclamation.etat }}</td>
+        <td>{{ reclamation.numero }}</td>
+        <td>{{ reclamation.date | formatMediumDate }}</td>
+        <td>
+          @if (reclamation.personne) {
+        <div>
+        <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
+        </div>
+        }
+        </td>
+        <td class="text-end">
+          <div class="btn-group">
+            <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
+            </button>
+            <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }">Show Commentaire</span>
+            </button>
+            <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <fa-icon icon="eye"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+            </a>
+            <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <fa-icon icon="pencil-alt"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+            </a>
+            <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <fa-icon icon="times"></fa-icon>
+              <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+            </button>
+          </div>
+        </td>
+        </tr>
+        }
+        }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+        }
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
 
       <reclamation-alert-error></reclamation-alert-error>
 
@@ -37,19 +339,19 @@
         </th>
         <th scope="col" reclamationSortBy="categorie">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span>
+        <span>Nom projet</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
         <th scope="col" reclamationSortBy="etat">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.etat">Etat</span>
+        <span>Etat</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
         <th scope="col" reclamationSortBy="numero">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+        <span>Plainte</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
@@ -70,6 +372,7 @@
         </thead>
         <tbody>
         @for (reclamation of reclamations; track trackId) {
+        @if (reclamation.etat === 'notVerified') {
       <tr data-cy="entityTable">
       <td>
       <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
@@ -111,6 +414,7 @@
       </td>
       </tr>
       }
+        }
       </tbody>
     </table>
   </div>
@@ -131,6 +435,7 @@
         ></ngb-pagination>
       </div>
       }
+      </li>
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -144,7 +449,7 @@
     <!-- Partie Droite -->
     <div class="col-md-6">
       <h2 class="text-center mt-4" id="corrections-heading" data-cy="CorrectionsHeading">
-        <span class="corrections-title">Corrections</span>
+        <strong class="corrections-title" style="font-weight: bold; font-family: Arial, sans-serif;">Corrections</strong>
       </h2>
 
       <reclamation-alert-error></reclamation-alert-error>
@@ -172,13 +477,13 @@
         </th>
         <th scope="col" reclamationSortBy="categorie">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span>
+        <span >Objectif</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
         <th scope="col" reclamationSortBy="etat">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.etat">Etat</span>
+        <span >Etat</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
@@ -207,7 +512,7 @@
         @for (reclamation of reclamations; track trackId) {
       <tr data-cy="entityTable">
       <td>
-      <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+      <a [routerLink]="['/reclaéééééééééééééééééééééééééééééééééééééééééémation', reclamation.id, 'view']">{{ reclamation.id }}</a>
       </td>
       <td>{{ reclamation.categorie }}</td>
       <td>{{ reclamation.etat }}</td>
@@ -224,7 +529,7 @@
         <div class="btn-group">
           <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
             <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
+           <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
           </button>
           <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
             <fa-icon icon="eye"></fa-icon>
@@ -232,15 +537,15 @@
           </button>
           <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+            <span class="d-none d-md-inline" >Voir</span>
           </a>
           <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
             <fa-icon icon="pencil-alt"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
+            <span class="d-none d-md-inline" >Editer</span>
           </a>
           <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
             <fa-icon icon="times"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
+            <span class="d-none d-md-inline">Supprimer</span>
           </button>
         </div>
       </td>
@@ -266,14 +571,51 @@
         ></ngb-pagination>
       </div>
       }
+      <li
+        *reclamationHasAnyAuthority="'ROLE_USER'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
       <div class="d-flex justify-content-end mt-2">
         <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary btn-danger jh-create-entity create-reclamation" [routerLink]="['/reclamation/new']">
           <fa-icon icon="plus"></fa-icon>
           <span>Créer un nouveau Reclamation</span>
         </button>
-
-
       </div>
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <div class="d-flex justify-content-end mt-2">
+          <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary btn-danger jh-create-entity create-reclamation" [routerLink]="['/reclamation/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span></span>
+          </button>
+        </div>
+      </li>
+      <li
+        *reclamationHasAnyAuthority="'ROLE_DEV'"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <div class="d-flex justify-content-end mt-2">
+          <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary btn-danger jh-create-entity create-reclamation" [routerLink]="['/reclamation/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span></span>
+          </button>
+        </div>
+      </li>
     </div>
   </div>
 </div>

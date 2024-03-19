@@ -4,28 +4,35 @@
       <h2
         id="reclamation-commentaire-heading"
         data-cy="CommentaireCreateUpdateHeading"
-        reclamationTranslate="pfeApp.commentaire.home.createOrEditLabel"
-      >
-        Créer ou éditer un Commentaire
-      </h2>
+        style="font-family: Arial, sans-serif; font-weight: bold;  color:#5993b0;">
 
+        Ajouter<span style="font-weight: normal; color:black;"> un Commentaire</span>
+      </h2>
       <div>
         <reclamation-alert-error></reclamation-alert-error>
-
         @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" reclamationTranslate="global.field.id" for="field_id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
-        }
-
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.commentaire.contenu" for="field_contenu">Contenu</label>
+          <label class="form-label" reclamationTranslate="global.field.id" for="field_id" style="font-weight: bold; color: black;">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+        }
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="pfeApp.commentaire.contenu" for="field_contenu" style="font-weight: bold; color: black;">Contenu</label>
           <input type="text" class="form-control" name="contenu" id="field_contenu" data-cy="contenu" formControlName="contenu" />
         </div>
-
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-piece-jointe"
+          [routerLink]="['/piece-jointe/new']"
+          style="font-size: 12px; background-color: #3498db; border-color: #3498db; color: #fff; padding: 5px 10px; font-weight: bold;"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span>ajouter une Piece Jointe</span>
+        </button>
+        <hr>
         <div class="mb-3">
-          <label class="form-label" reclamationTranslate="pfeApp.commentaire.reclamation" for="field_reclamation">Reclamation</label>
+          <label class="form-label" reclamationTranslate="pfeApp.commentaire.reclamation" for="field_reclamation" style="font-weight: bold; color: black;">Reclamation</label>
           <select
             class="form-control"
             id="field_reclamation"
@@ -36,23 +43,22 @@
           >
             <option [ngValue]="null"></option>
             @for (reclamationOption of reclamationsSharedCollection; track $index) {
-              <option [ngValue]="reclamationOption">{{ reclamationOption.id }}</option>
+            <option [ngValue]="reclamationOption">{{ reclamationOption.id }}</option>
             }
           </select>
         </div>
       </div>
-
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()" style="font-weight: bold; color: black;">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
         </button>
-
         <button
           type="submit"
           id="save-entity"
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          style="font-weight: bold; color: black;"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.save">Sauvegarder</span>
         </button>
