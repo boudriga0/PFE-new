@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <form name="editForm" role="form" novalidate [formGroup]="editForm">
       <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
         Créer  <span style="font-weight: normal;color:black;"> une Reclamation </span>
       </h2>
@@ -54,10 +54,53 @@
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()" style="font-family: Arial, sans-serif;">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
-
-        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary" style="font-family: Arial, sans-serif;">
+      </div>
+      <div>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_USER'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveNotVerified()">
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
         </button>
+        </li>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveVerified()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer a l'équipe de développement</span>
+          </button>
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveValid()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer au client</span>
+          </button>
+        </li>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_DEV'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveDeveloped()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
+          </button>
+
+        </li>
       </div>
     </form>
   </div>

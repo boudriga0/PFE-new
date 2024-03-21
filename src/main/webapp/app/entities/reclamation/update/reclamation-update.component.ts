@@ -13,12 +13,13 @@ import { IReclamation } from '../reclamation.model';
 import { ReclamationService } from '../service/reclamation.service';
 import { ReclamationFormService, ReclamationFormGroup } from './reclamation-form.service';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
 
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation-update',
   templateUrl: './reclamation-update.component.html',
-  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgbModule ],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgbModule, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective],
 })
 export class ReclamationUpdateComponent implements OnInit {
 
@@ -53,11 +54,45 @@ export class ReclamationUpdateComponent implements OnInit {
     window.history.back();
   }
 
-  save(): void {
+
+  saveNotVerified(): void {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
 
     reclamation.etat = "notVerified";
+    if (reclamation.id !== null) {
+      this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
+    } else {
+      this.subscribeToSaveResponse(this.reclamationService.create(reclamation));
+    }
+  }
+  saveVerified(): void {
+    this.isSaving = true;
+    const reclamation = this.reclamationFormService.getReclamation(this.editForm);
+
+    reclamation.etat = "Verified";
+    if (reclamation.id !== null) {
+      this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
+    } else {
+      this.subscribeToSaveResponse(this.reclamationService.create(reclamation));
+    }
+  }
+  saveDeveloped(): void {
+    this.isSaving = true;
+    const reclamation = this.reclamationFormService.getReclamation(this.editForm);
+
+    reclamation.etat = "isDeveloped";
+    if (reclamation.id !== null) {
+      this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
+    } else {
+      this.subscribeToSaveResponse(this.reclamationService.create(reclamation));
+    }
+  }
+  saveValid(): void {
+    this.isSaving = true;
+    const reclamation = this.reclamationFormService.getReclamation(this.editForm);
+
+    reclamation.etat = "isValid";
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {

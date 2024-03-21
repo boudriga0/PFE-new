@@ -24,18 +24,9 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    .background {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-    }
-
     form {
-      height: 800px;
-      width: 700px;
+      height: 975px;
+      width: 780px;
       background-color: rgba(255, 255, 255, 0.13);
       position: absolute;
       top: 50%;
@@ -54,13 +45,6 @@
       letter-spacing: 0.5px;
       outline: none;
       border: none;
-    }
-
-    form h1 {
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 42px;
-      text-align: center;
     }
 
     label {
@@ -97,244 +81,259 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
+    .image-container {
+      text-align: center;
+    }
+
+    .image-container img {
+      width: 100px; /* Adjust the size as needed */
+      margin-bottom: 10px;
+    }
+
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
 <body>
-<div class="background">
-  <div class="shape"></div>
-  <div class="shape"></div>
-</div>
+
+
+
 <form>
-  <img src="/content/images/registre.png" alt=""
-       style="max-width: 25%; height: auto; display: block; margin: 0 auto 20px"/>
 
-  <h1 data-cy="loginTitle" style="font-size: 25px; font-weight: bold; text-align: center; text-transform: uppercase">
-    Création du Compte
-  </h1>
+  @if (success) {
+  <div class="alert alert-success">
+    <strong>Compte enregistré !</strong>
+    Merci de patienter pendant que le responsable vérifie votre compte.
+  </div>
+  }
 
-
-    @if (success) {
-    <div class="alert alert-success">
-      <strong>Compte enregistré !</strong>
-      Merci de patienter pendant que le responsable vérifie votre compte.
+  @if (error) {
+  <div class="alert alert-danger" reclamationTranslate="register.messages.error.fail">
+    <strong>Compte non créé !</strong> Merci d&apos;essayer à nouveau plus tard.
     </div>
-                }
+  }
 
-                @if (error) {
-                  <div class="alert alert-danger" reclamationTranslate="register.messages.error.fail">
-                    <strong>Compte non créé !</strong> Merci d&apos;essayer à nouveau plus tard.
-                  </div>
-                }
+  @if (errorUserExists) {
+  <div class="alert alert-danger" reclamationTranslate="register.messages.error.userexists">
+    <strong>Ce compte utilisateur existe déjà !</strong> Veuillez en choisir un autre.
+  </div>
+  }
 
-                @if (errorUserExists) {
-                  <div class="alert alert-danger" reclamationTranslate="register.messages.error.userexists">
-                    <strong>Ce compte utilisateur existe déjà !</strong> Veuillez en choisir un autre.
-                  </div>
-                }
+  @if (errorEmailExists) {
+  <div class="alert alert-danger" reclamationTranslate="register.messages.error.emailexists">
+    <strong>Cet email est déjà utilisé !</strong> Veuillez en choisir un autre.
+  </div>
+  }
 
-                @if (errorEmailExists) {
-                  <div class="alert alert-danger" reclamationTranslate="register.messages.error.emailexists">
-                    <strong>Cet email est déjà utilisé !</strong> Veuillez en choisir un autre.
-                  </div>
-                }
+  @if (doNotMatch) {
+  <div class="alert alert-danger" reclamationTranslate="global.messages.error.dontmatch">
+    Le nouveau mot de passe et sa confirmation ne sont pas égaux !
+  </div>
+  }
 
-                @if (doNotMatch) {
-                  <div class="alert alert-danger" reclamationTranslate="global.messages.error.dontmatch">
-                    Le nouveau mot de passe et sa confirmation ne sont pas égaux !
-                  </div>
-                }
+  <div class="d-flex justify-content-center">
 
-            <div class="d-flex justify-content-center">
-              <div class="col-md-8">
-                @if (!success) {
-                  <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
-                    <div class="mb-3">
-                      <label class="form-label" for="login" reclamationTranslate="global.form.username.label">Nom d&apos;utilisateur</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="login"
-                        name="login"
-                        placeholder="{{ 'global.form.username.placeholder' | translate }}"
-                        formControlName="login"
-                        data-cy="username"
-                        #login
-                      />
+    <div class="col-md-8">
 
-                      @if (registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)) {
-                        <div>
-                          @if (registerForm.get('login')?.errors?.required) {
-                            <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.required"
-                              >Votre nom d&apos;utilisateur est obligatoire.</small
-                            >
-                          }
+      @if (!success) {
+      <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm">
+        <div class="mb-3">
+         <div class="image-container">
+  <img src="/content/images/registre.png" alt="Création du compte">
+  <div class="title">CRÉATION DU COMPTE</div>
+</div>
+          <label class="form-label" for="login" reclamationTranslate="global.form.username.label">Nom d&apos;utilisateur</label>
+            <input
+              type="text"
+              class="form-control"
+              id="login"
+              name="login"
+              placeholder="{{ 'global.form.username.placeholder' | translate }}"
+              formControlName="login"
+              data-cy="username"
+              #login
+            />
 
-                          @if (registerForm.get('login')?.errors?.minlength) {
-                            <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.minlength"
-                              >Votre nom d&apos;utilisateur doit contenir plus d&apos;un caractère.</small
-                            >
-                          }
+            @if (registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)) {
+      <div>
+        @if (registerForm.get('login')?.errors?.required) {
+        <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.required"
+          >Votre nom d&apos;utilisateur est obligatoire.</small
+                  >
+        }
 
-                          @if (registerForm.get('login')?.errors?.maxlength) {
-                            <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.maxlength"
-                              >Votre nom d&apos;utilisateur ne peut pas contenir plus de 50 caractères.</small
-                            >
-                          }
+        @if (registerForm.get('login')?.errors?.minlength) {
+        <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.minlength"
+          >Votre nom d&apos;utilisateur doit contenir plus d&apos;un caractère.</small
+                  >
+        }
 
-                          @if (registerForm.get('login')?.errors?.pattern) {
-                            <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.pattern"
-                              >Votre nom d&apos;utilisateur est invalide.</small
-                            >
-                          }
-                        </div>
-                      }
-                    </div>
+        @if (registerForm.get('login')?.errors?.maxlength) {
+        <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.maxlength"
+          >Votre nom d&apos;utilisateur ne peut pas contenir plus de 50 caractères.</small
+                  >
+        }
 
-                    <div class="mb-3">
-                      <label class="form-label" for="email" reclamationTranslate="global.form.email.label">Email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="{{ 'global.form.email.placeholder' | translate }}"
-                        formControlName="email"
-                        data-cy="email"
-                      />
+        @if (registerForm.get('login')?.errors?.pattern) {
+        <small class="form-text text-danger" reclamationTranslate="register.messages.validate.login.pattern"
+          >Votre nom d&apos;utilisateur est invalide.</small
+                  >
+        }
+      </div>
+      }
+      </div>
 
-                      @if (registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)) {
-                        <div>
-                          @if (registerForm.get('email')?.errors?.required) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.required"
-                              >Votre email est requis.</small
-                            >
-                          }
+      <div class="mb-3">
+        <label class="form-label" for="email" reclamationTranslate="global.form.email.label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="{{ 'global.form.email.placeholder' | translate }}"
+              formControlName="email"
+              data-cy="email"
+            />
 
-                          @if (registerForm.get('email')?.errors?.invalid) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.invalid"
-                              >Votre email n&apos;est pas valide.</small
-                            >
-                          }
+            @if (registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)) {
+      <div>
+        @if (registerForm.get('email')?.errors?.required) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.required"
+          >Votre email est requis.</small
+        >
+        }
 
-                          @if (registerForm.get('email')?.errors?.minlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.minlength"
-                              >Votre email doit comporter au moins 5 caractères.</small
-                            >
-                          }
+        @if (registerForm.get('email')?.errors?.invalid) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.invalid"
+          >Votre email n&apos;est pas valide.</small
+                  >
+        }
 
-                          @if (registerForm.get('email')?.errors?.maxlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.maxlength"
-                              >Votre email ne doit pas comporter plus de 50 caractères.</small
-                            >
-                          }
-                        </div>
-                      }
-                    </div>
+        @if (registerForm.get('email')?.errors?.minlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.minlength"
+          >Votre email doit comporter au moins 5 caractères.</small
+        >
+        }
 
-                    <div class="mb-3">
-                      <label class="form-label" for="password"> Mot de passe</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="password"
-                        name="password"
-                        placeholder="{{ 'global.form.newpassword.placeholder' | translate }}"
-                        formControlName="password"
-                        data-cy="firstPassword"
-                      />
+        @if (registerForm.get('email')?.errors?.maxlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.email.maxlength"
+          >Votre email ne doit pas comporter plus de 50 caractères.</small
+        >
+        }
+      </div>
+      }
+      </div>
 
-                      @if (
-                        registerForm.get('password')!.invalid &&
-                        (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)
-                      ) {
-                        <div>
-                          @if (registerForm.get('password')?.errors?.required) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.required"
-                              >Votre mot de passe est requis.</small
-                            >
-                          }
+      <div class="mb-3">
+        <label class="form-label" for="password"> Mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="{{ 'global.form.newpassword.placeholder' | translate }}"
+              formControlName="password"
+              data-cy="firstPassword"
+            />
 
-                          @if (registerForm.get('password')?.errors?.minlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.minlength"
-                              >Votre mot de passe doit comporter au moins 4 caractères.</small
-                            >
-                          }
+            @if (
+              registerForm.get('password')!.invalid &&
+              (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)
+            ) {
+      <div>
+        @if (registerForm.get('password')?.errors?.required) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.required"
+          >Votre mot de passe est requis.</small
+        >
+        }
 
-                          @if (registerForm.get('password')?.errors?.maxlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.maxlength"
-                              >Votre mot de passe ne doit pas comporter plus de 50 caractères.</small
-                            >
-                          }
-                        </div>
-                      }
+        @if (registerForm.get('password')?.errors?.minlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.minlength"
+          >Votre mot de passe doit comporter au moins 4 caractères.</small
+        >
+        }
 
-                      <reclamation-password-strength-bar
-                        [passwordToCheck]="registerForm.get('password')!.value"
-                      ></reclamation-password-strength-bar>
-                    </div>
+        @if (registerForm.get('password')?.errors?.maxlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.newpassword.maxlength"
+          >Votre mot de passe ne doit pas comporter plus de 50 caractères.</small
+        >
+        }
+      </div>
+      }
 
-                    <div class="mb-3">
-                      <label class="form-label" for="confirmPassword">Confirmation du mot de passe</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="{{ 'global.form.confirmpassword.placeholder' | translate }}"
-                        formControlName="confirmPassword"
-                        data-cy="secondPassword"
-                      />
+      <reclamation-password-strength-bar
+        [passwordToCheck]="registerForm.get('password')!.value"
+      ></reclamation-password-strength-bar>
+    </div>
 
-                      @if (
-                        registerForm.get('confirmPassword')!.invalid &&
-                        (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
-                      ) {
-                        <div>
-                          @if (registerForm.get('confirmPassword')?.errors?.required) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.required"
-                              >Votre confirmation du mot de passe est requise.</small
-                            >
-                          }
+    <div class="mb-3">
+      <label class="form-label" for="confirmPassword">Confirmation du mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        name="confirmPassword"
+        placeholder="{{ 'global.form.confirmpassword.placeholder' | translate }}"
+              formControlName="confirmPassword"
+              data-cy="secondPassword"
+            />
 
-                          @if (registerForm.get('confirmPassword')?.errors?.minlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.minlength"
-                              >Votre confirmation du mot de passe doit comporter au moins 4 caractères.</small
-                            >
-                          }
+            @if (
+              registerForm.get('confirmPassword')!.invalid &&
+              (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
+            ) {
+      <div>
+        @if (registerForm.get('confirmPassword')?.errors?.required) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.required"
+          >Votre confirmation du mot de passe est requise.</small
+        >
+        }
 
-                          @if (registerForm.get('confirmPassword')?.errors?.maxlength) {
-                            <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.maxlength"
-                              >Votre confirmation du mot de passe ne doit pas comporter plus de 50 caractères.</small
-                            >
-                          }
-                        </div>
-                      }
-                    </div>
+        @if (registerForm.get('confirmPassword')?.errors?.minlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.minlength"
+          >Votre confirmation du mot de passe doit comporter au moins 4 caractères.</small
+        >
+        }
 
-                    <button
-                      type="submit"
-                      [disabled]="registerForm.invalid"
-                      class="btn btn-primary"
-                      reclamationTranslate="register.form.button"
-                      data-cy="submit"
-                    >
-                      Enregistrement
-                    </button>
-                    <div class="d-flex justify-content-center">
-              <div class="col-md-8">
-                <div class="mt-3 alert alert-warning">
-                  <span>si vous avez déjà un compte </span>
-                  <a class="alert-link" routerLink="/login">connecter</a>
-                </div>
-              </div>
-            </div>
-                  </form>
-                }
-              </div>
-            </div>
+        @if (registerForm.get('confirmPassword')?.errors?.maxlength) {
+        <small class="form-text text-danger" reclamationTranslate="global.messages.validate.confirmpassword.maxlength"
+          >Votre confirmation du mot de passe ne doit pas comporter plus de 50 caractères.</small
+        >
+        }
+      </div>
+      }
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="btn btn-primary"
+        reclamationTranslate="register.form.button"
+        data-cy="submit"
+      >
+        Enregistrement
+      </button>
+      <div class="d-flex justify-content-center">
+        <div class="col-md-8">
+          <div class="mt-3 alert alert-warning">
+            <span>si vous avez déjà un compte </span>
+            <a class="alert-link" routerLink="/login">connecter</a>
+          </div>
+        </div>
+      </div>
+    </form>
+      }
+    </div>
+  </div>
 
 
-  </form>
-  </body>
+</form>
+</body>
 </html>
