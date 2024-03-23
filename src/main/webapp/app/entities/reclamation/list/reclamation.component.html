@@ -1,9 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .background {
+    height: 100%;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #e3f2fd;
+  }
+
+</style>
+    </head>
+      <body>
+      <div class="background">
+        <div class="container-fluid" style="padding: 0; margin: 0; background-image: url(''); background-size: cover; background-position: center; height: 100vh;">
 
 
-<div class="container-fluid" style="padding: 0; margin: 0; background-image: url(''); background-size: cover; background-position: center; height: 100vh;">
-
-
-  <li
+        <li
     *reclamationHasAnyAuthority="'ROLE_USER'"
     ngbDropdown
     class="nav-item dropdown pointer"
@@ -85,12 +103,7 @@
         <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
-          <th scope="col" reclamationSortBy="etat">
-          <div class="d-flex">
-          <span>Etat</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
+
           <th scope="col" reclamationSortBy="numero">
           <div class="d-flex">
           <span>Plainte</span>
@@ -113,14 +126,14 @@
           </tr>
           </thead>
           <tbody>
-          @for (reclamation of reclamations; track trackId) {
+          @for (reclamation of reclamations; track trackId){
           @if (reclamation.etat ==='Verified') {
         <tr data-cy="entityTable">
         <td>
         <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
         </td>
         <td>{{ reclamation.categorie }}</td>
-        <td>{{ reclamation.etat }}</td>
+
         <td>{{ reclamation.numero }}</td>
         <td>{{ reclamation.date | formatMediumDate }}</td>
         <td>
@@ -216,12 +229,7 @@
         <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
-          <th scope="col" reclamationSortBy="etat">
-          <div class="d-flex">
-          <span>Etat</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
+
           <th scope="col" reclamationSortBy="numero">
           <div class="d-flex">
           <span>Plainte</span>
@@ -251,7 +259,7 @@
         <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
         </td>
         <td>{{ reclamation.categorie }}</td>
-        <td>{{ reclamation.etat }}</td>
+
         <td>{{ reclamation.numero }}</td>
         <td>{{ reclamation.date | formatMediumDate }}</td>
         <td>
@@ -347,12 +355,7 @@
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
-        <th scope="col" reclamationSortBy="etat">
-        <div class="d-flex">
-        <span>Etat</span>
-        <fa-icon class="p-1" icon="sort"></fa-icon>
-        </div>
-        </th>
+
         <th scope="col" reclamationSortBy="numero">
         <div class="d-flex">
         <span>Plainte</span>
@@ -382,7 +385,6 @@
       <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
       </td>
       <td>{{ reclamation.categorie }}</td>
-      <td>{{ reclamation.etat }}</td>
       <td>{{ reclamation.numero }}</td>
       <td>{{ reclamation.date | formatMediumDate }}</td>
       <td>
@@ -488,19 +490,14 @@
         </th>
         <th scope="col" reclamationSortBy="categorie">
         <div class="d-flex">
-        <span >Objectif</span>
+        <span >Nom du Projet</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
-        <th scope="col" reclamationSortBy="etat">
-        <div class="d-flex">
-        <span >Etat</span>
-        <fa-icon class="p-1" icon="sort"></fa-icon>
-        </div>
-        </th>
+
         <th scope="col" reclamationSortBy="numero">
         <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+        <span reclamationTranslate="pfeApp.reclamation.numero">Plainte</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>
@@ -528,7 +525,7 @@
       <a [routerLink]="['/reclaéééééééééééééééééééééééééééééééééééééééééémation', reclamation.id, 'view']">{{ reclamation.id }}</a>
       </td>
       <td>{{ reclamation.categorie }}</td>
-      <td>{{ reclamation.etat }}</td>
+
       <td>{{ reclamation.numero }}</td>
       <td>{{ reclamation.date | formatMediumDate }}</td>
       <td>
@@ -620,19 +617,13 @@
           </th>
           <th scope="col" reclamationSortBy="categorie">
           <div class="d-flex">
-          <span >Objectif</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
-          <th scope="col" reclamationSortBy="etat">
-          <div class="d-flex">
-          <span >Etat</span>
+          <span >Nom du projet</span>
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
           <th scope="col" reclamationSortBy="numero">
           <div class="d-flex">
-          <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+          <span reclamationTranslate="pfeApp.reclamation.numero">Plainte</span>
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
@@ -661,7 +652,6 @@
         <a [routerLink]="['/reclaéééééééééééééééééééééééééééééééééééééééééémation', reclamation.id, 'view']">{{ reclamation.id }}</a>
         </td>
         <td>{{ reclamation.categorie }}</td>
-        <td>{{ reclamation.etat }}</td>
         <td>{{ reclamation.numero }}</td>
         <td>{{ reclamation.date | formatMediumDate }}</td>
         <td>
@@ -753,19 +743,13 @@
           </th>
           <th scope="col" reclamationSortBy="categorie">
           <div class="d-flex">
-          <span >Objectif</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
-          <th scope="col" reclamationSortBy="etat">
-          <div class="d-flex">
-          <span >Etat</span>
+          <span >Nom du projet</span>
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
           <th scope="col" reclamationSortBy="numero">
           <div class="d-flex">
-          <span reclamationTranslate="pfeApp.reclamation.numero">Numero</span>
+          <span reclamationTranslate="pfeApp.reclamation.numero">Plainte</span>
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
@@ -792,7 +776,6 @@
         <a [routerLink]="['/reclaéééééééééééééééééééééééééééééééééééééééééémation', reclamation.id, 'view']">{{ reclamation.id }}</a>
         </td>
         <td>{{ reclamation.categorie }}</td>
-        <td>{{ reclamation.etat }}</td>
         <td>{{ reclamation.numero }}</td>
         <td>{{ reclamation.date | formatMediumDate }}</td>
         <td>
@@ -898,4 +881,7 @@
     </div>
   </div>
 </div>
+</div>
 
+    </body>
+    </html>
