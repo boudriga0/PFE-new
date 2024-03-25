@@ -1,0 +1,76 @@
+<aside>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_USER'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <h1 class="text-center mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 22px; font-weight: bold;">ESPACE CLIENT</h1>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <h1 class="text-center mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 22px; font-weight: bold;">ESPACE RESPONSABLE</h1>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_DEV'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <h1 class="text-center mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 22px; font-weight: bold;">  ESPACE DEVELOPPEUR</h1>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a routerLink="/admin/user-management">
+      <i class="fa fa-user-o"   aria-hidden="true"></i>
+      Gestion des utilisateurs
+    </a>
+  </li>
+  <a routerLink="/account/settings">
+    <i class="fa fa-laptop" aria-hidden="true"></i>
+    Profil
+  </a>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_USER'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a routerLink="/reclamation/new">
+      <i class="fa fa-clone" aria-hidden="true"></i>
+      Nouvelle Réclamation
+    </a>
+  </li>
+  <a  routerLink="/reclamation">
+    <i class="fa fa-star-o" aria-hidden="true"></i>
+    Liste (Reclamation / correction )
+  </a>
+  <a>
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+    Déconnexion
+  </a>
+</aside>
+
+<div class="social">
+  <a href="https://www.linkedin.com/in/florin-cornea-b5118057/" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+</div>

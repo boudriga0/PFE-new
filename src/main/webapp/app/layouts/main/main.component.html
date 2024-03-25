@@ -1,13 +1,22 @@
-<reclamation-page-ribbon></reclamation-page-ribbon>
-
-<div>
-  <router-outlet name="navbar"></router-outlet>
-</div>
-
 <div class="container-fluid">
-  <div class="card jh-card">
-    <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet name="navbar"></router-outlet>
+    </div>
   </div>
-
-  <reclamation-footer></reclamation-footer>
+  <div class="row">
+    <div class="col-md-2">
+      <router-outlet name="sidebar"></router-outlet>
+    </div>
+    <div class="col-md-10">
+      <div class="card jh-card">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <reclamation-footer></reclamation-footer>
+    </div>
+  </div>
 </div>

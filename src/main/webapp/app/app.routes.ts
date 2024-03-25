@@ -8,7 +8,8 @@ import HomeComponent from './home/home.component';
 import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import {SidebarComponent} from "./sidebar/sidebar.component";
+import {SidebarComponent} from "./layouts/sidebar/sidebar.component";
+
 
 const routes: Routes = [
   {

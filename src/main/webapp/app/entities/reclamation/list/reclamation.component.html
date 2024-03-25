@@ -7,11 +7,11 @@
     height: 100%;
   }
   body, html {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     height: 100%;
     overflow: hidden;
-    background-color: #e3f2fd;
+    background-color: #f5f5f5;
   }
 
 </style>
@@ -21,36 +21,6 @@
         <div class="container-fluid" style="padding: 0; margin: 0; background-image: url(''); background-size: cover; background-position: center; height: 100vh;">
 
 
-        <li
-    *reclamationHasAnyAuthority="'ROLE_USER'"
-    ngbDropdown
-    class="nav-item dropdown pointer"
-    display="dynamic"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-  <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE CLIENT</h1>
-  </li>
-  <li
-    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
-    ngbDropdown
-    class="nav-item dropdown pointer"
-    display="dynamic"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE RESPONSABLE</h1>
-  </li>
-  <li
-    *reclamationHasAnyAuthority="'ROLE_DEV'"
-    ngbDropdown
-    class="nav-item dropdown pointer"
-    display="dynamic"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    <h1 class="text-left mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 24px; font-weight: bold;">ESPACE DEVELOPPEUR</h1>
-  </li>
 
   <div class="row">
 
