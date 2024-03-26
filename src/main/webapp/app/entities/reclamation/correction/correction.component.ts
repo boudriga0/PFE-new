@@ -21,22 +21,23 @@ import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.dir
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation',
-  templateUrl: './reclamation.component.html',
-    imports: [
-        RouterModule,
-        FormsModule,
-        SharedModule,
-        SortDirective,
-        SortByDirective,
-        DurationPipe,
-        FormatMediumDatetimePipe,
-        FormatMediumDatePipe,
-        FilterComponent,
-        ItemCountComponent,
-        HasAnyAuthorityDirective,
-    ],
+  templateUrl: './correction.component.html',
+  imports: [
+    RouterModule,
+    FormsModule,
+    SharedModule,
+    SortDirective,
+    SortByDirective,
+    DurationPipe,
+    FormatMediumDatetimePipe,
+    FormatMediumDatePipe,
+    FilterComponent,
+    ItemCountComponent,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+  ],
 })
-export class ReclamationComponent implements OnInit {
+export class CorrectionComponent implements OnInit {
   reclamations?: IReclamation[];
   isLoading = false;
 

@@ -12,6 +12,18 @@ const routes: Routes = [
     loadChildren: () => import('./reclamation/reclamation.routes'),
   },
   {
+    path: 'reclamation',
+    data: { pageTitle: 'pfeApp.reclamation.home.title' },
+    loadChildren: () => import('./reclamation/reclamation.routes'),
+  },
+  {
+    path: 'correction',
+    data: { pageTitle: 'pfeApp.correction.home.title' },
+    loadChildren: () => import('./correction/reclamation.routes'),
+  },
+
+
+  {
     path: 'commentaire',
     data: { pageTitle: 'pfeApp.commentaire.home.title' },
     loadChildren: () => import('./commentaire/commentaire.routes'),
