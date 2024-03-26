@@ -31,7 +31,13 @@
         <strong class="reclamation-title" style="font-weight: bold; font-family: Arial, sans-serif;">Réclamations</strong>
       </h2>
 
-      <li *reclamationHasAnyAuthority="'ROLE_DEV'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li
+        *reclamationHasAnyAuthority="'ROLE_DEV'"
+        ngbDropdown class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <reclamation-alert-error></reclamation-alert-error>
         <reclamation-alert></reclamation-alert>
         <reclamation-filter [filters]="filters"></reclamation-filter>
@@ -435,7 +441,7 @@
         <div class="d-flex justify-content-end mt-2">
           <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary btn-danger jh-create-entity create-reclamation" [routerLink]="['/reclamation/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span></span>
+            <span>Créer</span>
           </button>
         </div>
       </li>

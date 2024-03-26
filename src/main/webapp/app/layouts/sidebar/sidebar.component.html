@@ -59,6 +59,32 @@
       Nouvelle Réclamation
     </a>
   </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a routerLink="/reclamation/new">
+      <i class="fa fa-clone" aria-hidden="true"></i>
+      Envoyer Réclamation
+    </a>
+  </li>
+  <li
+    *reclamationHasAnyAuthority="'ROLE_DEV'"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a routerLink="/reclamation/new">
+      <i class="fa fa-clone" aria-hidden="true"></i>
+      Nouvelle correction
+    </a>
+  </li>
   <a  routerLink="/reclamation">
     <i class="fa fa-star-o" aria-hidden="true"></i>
     Réclamation
