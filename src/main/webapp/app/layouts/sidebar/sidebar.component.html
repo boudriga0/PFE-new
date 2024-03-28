@@ -1,4 +1,12 @@
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
 <aside>
+  <br><br>
   <li
     *reclamationHasAnyAuthority="'ROLE_USER'"
     ngbDropdown
@@ -29,6 +37,7 @@
   >
     <h1 class="text-center mt-4 custom-font" style="font-family: 'Playpen Sans', sans-serif; color: #02195b; font-size: 22px; font-weight: bold;">  ESPACE DEVELOPPEUR</h1>
   </li>
+  <br><br><br><br>
   <li
     *reclamationHasAnyAuthority="'ROLE_ADMIN'"
     ngbDropdown
@@ -38,14 +47,16 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     <a routerLink="/admin/user-management">
-      <i class="fa fa-user-o"   aria-hidden="true"></i>
+      <i class="fa fa-users" aria-hidden="true"></i>
       Gestion des utilisateurs
     </a>
+    <br>
   </li>
   <a routerLink="/account/settings">
-    <i class="fa fa-laptop" aria-hidden="true"></i>
+    <i class="fa fa-cog" aria-hidden="true"></i>
     Profil
   </a>
+  <br>
   <li
     *reclamationHasAnyAuthority="'ROLE_USER'"
     ngbDropdown
@@ -55,9 +66,10 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     <a routerLink="/reclamation/new">
-      <i class="fa fa-clone" aria-hidden="true"></i>
+      <i class="fa fa-plus" aria-hidden="true"></i>
       Nouvelle Réclamation
     </a>
+    <br>
   </li>
   <li
     *reclamationHasAnyAuthority="'ROLE_ADMIN'"
@@ -68,9 +80,10 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     <a routerLink="/reclamation/new">
-      <i class="fa fa-clone" aria-hidden="true"></i>
+      <i class="fa fa-envelope" aria-hidden="true"></i>
       Envoyer Réclamation
     </a>
+    <br>
   </li>
   <li
     *reclamationHasAnyAuthority="'ROLE_DEV'"
@@ -81,26 +94,29 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     <a routerLink="/reclamation/new">
-      <i class="fa fa-clone" aria-hidden="true"></i>
+      <i class="fa fa-pencil" aria-hidden="true"></i>
       Nouvelle correction
     </a>
+    <br>
   </li>
-  <a  routerLink="/reclamation">
-    <i class="fa fa-star-o" aria-hidden="true"></i>
-    Réclamation
+  <a routerLink="/reclamation">
+    <i class="fa fa-list" aria-hidden="true"></i>
+    Liste des Réclamations
   </a>
-  <a  routerLink="/correction">
-    <i class="fa fa-star-o" aria-hidden="true"></i>
-    Correction
+  <br>
+  <a routerLink="/correction">
+    <i class="fa fa-list" aria-hidden="true"></i>
+    Liste des Corrections
   </a>
-  <a>
-    <i class="fa fa-trash-o" aria-hidden="true"></i>
-    Déconnexion
+  <br>
+  <a (click)="logout()" id="logout" data-cy="logout">
+    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+    <span>Déconnexion</span>
   </a>
+  <br>
 </aside>
 
-<div class="social">
-  <a href="https://www.linkedin.com/in/florin-cornea-b5118057/" target="_blank">
-    <i class="fa fa-linkedin"></i>
-  </a>
-</div>
+</body>
+</html>
+
+

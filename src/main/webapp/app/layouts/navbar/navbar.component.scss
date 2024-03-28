@@ -17,15 +17,12 @@ Navbar
 
 .navbar {
   padding: 0.2rem 1rem;
+  border-top-left-radius: 60px;
 
   a.nav-link {
     font-weight: 400;
   }
 }
-
-/* ==========================================================================
-Logo styles
-========================================================================== */
 .logo-img {
   height: 45px;
   width: 45px;
