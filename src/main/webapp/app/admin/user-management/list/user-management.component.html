@@ -1,21 +1,35 @@
-<div>
-  <h2>
-    <span id="user-management-page-heading" reclamationTranslate="userManagement.home.title" data-cy="userManagementPageHeading"
-      >Utilisateurs</span
-    >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body, html {
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="container-fluid">
 
-    <div class="d-flex justify-content-end">
+    <h2 class="text-center" id="user-management-page-heading" data-cy="userManagementPageHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">Gestion <span style="font-weight: normal;color:black;">des utilisateurs</span>
+    </h2>
+
+    <div class="d-flex justify-content-end mt-3">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span reclamationTranslate="userManagement.home.refreshListLabel">Actualiser la liste</span>
       </button>
-      <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
-        <fa-icon icon="plus"></fa-icon> <span reclamationTranslate="userManagement.home.createLabel">Créer un nouvel utilisateur</span>
-      </button>
     </div>
-  </h2>
 
-  <reclamation-alert-error></reclamation-alert-error>
+
+    <reclamation-alert-error></reclamation-alert-error>
 
   <reclamation-alert></reclamation-alert>
 
@@ -141,4 +155,16 @@
       </div>
     </div>
   }
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-danger jh-create-entity" [routerLink]="['./new']">
+        <fa-icon icon="plus"></fa-icon> <span reclamationTranslate="userManagement.home.createLabel">Créer un nouvel utilisateur</span>
+      </button>
+    </div>
+
+
+  </div>
 </div>
+
+
+</body>
+</html>

@@ -6,13 +6,14 @@ import SharedModule from 'app/shared/shared.module';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
+import {Router, RouterLink} from "@angular/router";
 
 const initialAccount: Account = {} as Account;
 
 @Component({
   selector: 'reclamation-settings',
   standalone: true,
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './settings.component.html',
 })
 export default class SettingsComponent implements OnInit {
@@ -43,6 +44,7 @@ export default class SettingsComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private translateService: TranslateService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -66,5 +68,8 @@ export default class SettingsComponent implements OnInit {
         this.translateService.use(account.langKey);
       }
     });
+  }
+  password(): void {
+    this.router.navigate(['/account/password']);
   }
 }
