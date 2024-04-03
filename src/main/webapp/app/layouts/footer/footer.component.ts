@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
   selector: 'reclamation-footer',
+  standalone: true,
+  imports: [],
   templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss'
 })
-export default class FooterComponent {}
+export class FooterComponent {
+
+}

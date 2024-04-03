@@ -29,19 +29,6 @@
           </a>
         </li>
 
-        <a class="nav-link" routerLink="/reclamation" (click)="collapseNavbar()">
-          @if (account !== null) {
-            <li
-              ngbDropdown
-              class="nav-item dropdown pointer"
-              display="dynamic"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              <span><strong>Réclamation</strong></span>
-            </li>
-          }
-        </a>
 
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <!--

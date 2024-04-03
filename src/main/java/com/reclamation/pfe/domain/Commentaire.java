@@ -29,9 +29,6 @@ public class Commentaire implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "pieceJointes", "commentaires", "personne" }, allowSetters = true)
     private Reclamation reclamation;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
-
     public Long getId() {
         return this.id;
     }

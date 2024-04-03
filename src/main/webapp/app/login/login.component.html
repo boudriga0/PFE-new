@@ -99,35 +99,35 @@
   <div class="shape"></div>
   <div class="shape"></div>
 </div>
-  <form class="auth-form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
-    <img src="/content/images/login.png" alt="Authentification" data-cy="loginImage" class="small-image" /> <!-- Ajout de la classe small-image pour l'image -->
-    <h1>
-      Authentification
-    </h1>
-    <label class="username-label" for="username">nom d'utilisateur</label>
-    <input
-      type="text"
-      class="form-control"
-      name="username"
-      id="username"
-      formControlName="username"
-      #username
-      data-cy="username"
-    />
-    <label for="password">Mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      name="password"
-      id="password"
-      formControlName="password"
-      data-cy="password"
-    />
-    <button type="submit" class="btn btn-primary" data-cy="submit">Connexion</button>
-    <div class="alert alert-warning">
-      <span>Vous n'avez pas encore de compte ?</span>
-      <a class="alert-link" routerLink="/account/register">Créer un compte</a>
-    </div>
-  </form>
+<form class="auth-form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+  <img src="/content/images/login.png" alt="Authentification" data-cy="loginImage" class="small-image" /> <!-- Ajout de la classe small-image pour l'image -->
+  <h1>
+    Authentification
+  </h1>
+  <label class="username-label" for="username">nom d'utilisateur</label>
+  <input
+    type="text"
+    class="form-control"
+    name="username"
+    id="username"
+    formControlName="username"
+    #username
+    data-cy="username"
+  />
+  <label for="password">Mot de passe</label>
+  <input
+    type="password"
+    class="form-control"
+    name="password"
+    id="password"
+    formControlName="password"
+    data-cy="password"
+  />
+  <button type="submit" class="btn btn-primary" data-cy="submit">Connexion</button>
+  <div class="alert alert-warning">
+    <span>Vous n'avez pas encore de compte ?</span>
+    <a class="alert-link" routerLink="/account/register">Créer un compte</a>
+  </div>
+</form>
 </body>
 </html>

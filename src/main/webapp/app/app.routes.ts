@@ -4,24 +4,17 @@ import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { errorRoute } from './layouts/error/error.route';
 
-import HomeComponent from './home/home.component';
 import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
-import { MainPageComponent } from './main-page/main-page.component';
+
 import {SidebarComponent} from "./layouts/sidebar/sidebar.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {FooterComponent} from "./layouts/footer/footer.component";
 
 
 const routes: Routes = [
-  {
-    path: 'main-page',
-    component: MainPageComponent,
-    title: 'main-page.title',
-  },
-  {
-    path: '',
-    component: HomeComponent,
-    title: 'home.title',
-  },
+
+
   {
     path: '',
     component: NavbarComponent,
@@ -31,6 +24,16 @@ const routes: Routes = [
     path: '',
     component: SidebarComponent,
     outlet: 'sidebar',
+  },
+  {
+    path: '',
+    component: FooterComponent,
+    outlet: 'footer',
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    outlet: 'dashboard',
   },
 
 
@@ -47,7 +50,7 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.route'),
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
     title: 'login.title',
   },
