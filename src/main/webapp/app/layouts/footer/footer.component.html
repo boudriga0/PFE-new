@@ -36,7 +36,36 @@
     }
 
     footer {
-      background: #ebf4fa;
+      background: #c3dafc;
+    }
+
+    .footer-logo {
+      max-width: 100%;
+      height: auto;
+      margin-top:60px;
+    }
+
+
+    .service-item {
+      color: #818494;
+      font-weight: 500;
+      background-color: transparent;
+    }
+
+
+    .service-icon {
+      margin-right: 8px;
+    }
+
+
+    .contact-info {
+      color: #818494;
+      text-decoration: none;
+    }
+
+
+    .contact-info-container {
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -46,48 +75,43 @@
   <div class="container pt-5 border-bottom">
     <div class="row">
       <div class="col-md-3 col-sm-12 mb-3 text-center">
-        <svg class="img-fluid" width="200px" height="60px" viewBox="0 0 200 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        </svg>
+        <img src="../../../content/images/logo-jhipster.png" alt="Logo JHipster" class="footer-logo">
       </div>
       <div class="col-md-9 col-sm-12">
-        <div class="col-md-3 col-sm-6 col-6 p-0 float-left mb-3">
-          <h5 class="mb-4 font-weight-bold text-uppercase">Solutions</h5>
-          <ul class="list-group">
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../sales/sales-performance-market-pipeline.html">Sales</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../project-management/project-management.html">Project Management</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../workforce/workforce-organization-management-hr.html">Workforce</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../e-commerce/e-commerce.html">E-Commerce</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../finance/finance-accounting-erp.html">Finance</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../business-apps/business-apps.html">Business Apps</a></li>
-          </ul>
+        <div class="row">
+          <div class="col-md-4 col-sm-6 mb-3">
+            <h5 class="mb-4 font-weight-bold text-uppercase">Nos services</h5>
+            <ul class="list-group">
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2 service-item"><i class="fas fa-cogs service-icon"></i>Gestion de ressources humaines</li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2 service-item"><i class="fas fa-money-bill service-icon"></i>Gestion de finance & de la comptabilité</li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2 service-item"><i class="fas fa-boxes service-icon"></i>Gestion des stocks & de la chaîne logistique</li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2 service-item"><i class="fas fa-industry service-icon"></i>Gestion de la production</li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2 service-item"><i class="fas fa-shopping-cart service-icon"></i>Gestion des ventes & du marketing</li>
+            </ul>
+          </div>
+          <div class="col-md-4 col-sm-6 mb-3">
+            <h5 class="mb-4 font-weight-bold text-uppercase">Nous rencontrer</h5>
+            <div class="contact-info-container">
+              <p class="mb-2 contact-info"><i class="fas fa-map-marker-alt mr-2"></i>Avenue Mohamed 4071 Attia Khzema Ouest - Sousse, 4071</p>
+              <p class="mb-2 contact-info"><i class="fas fa-envelope mr-2"></i><a href="mailto:Commercial&#64;gpro-consulting.com" class="contact-info">Commercial&#64;gpro-consulting.com</a></p>
+              <p class="mb-0 contact-info"><i class="fas fa-phone mr-2"></i>(+216) 54 509 179</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 mb-3">
+            <h5 class="mb-4 font-weight-bold text-uppercase">Connect</h5>
+            <ul class="list-group">
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.linkedin.com/company/gpro-consulting/"><i class="fab fa-linkedin mr-1"></i> LinkedIn</a></li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.instagram.com/gproconsulting/"><i class="fab fa-instagram mr-1"></i> Instagram</a></li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.gpro-consulting.com" target="_blank"><i class="fab fa-google-plus mr-1"></i> Google</a></li>
+              <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.facebook.com/p/GPRO-Consulting-100057043189576/" target="_blank"><i class="fab fa-facebook mr-1"></i> Facebook</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="col-md-3 col-sm-6 col-6 p-0 mb-3 float-left">
-          <h5 class="mb-4 font-weight-bold text-uppercase">Developers</h5>
-          <ul class="list-group">
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://github.com/naologic">Open Source</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://stackshare.io/naologic">Technology</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 col-6 mb-3 p-0 float-left">
-          <h5 class="mb-4 font-weight-bold text-uppercase">Company</h5>
-          <ul class="list-group">
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="../about-naologic.html">About</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://blog.naologic.com">Blog</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 col-6 mb-3 p-0 float-left">
-          <h5 class="mb-4 font-weight-bold text-uppercase">Connect</h5>
-          <ul class="list-group">
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.linkedin.com/company/gpro-consulting/"><i class="fab fa-linkedin mr-1"></i> LinkedIn</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.instagram.com/gproconsulting/"><i class="fab fa-instagram mr-1"></i> Instagram</a></li>            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://plus.google.com/109511516185666043480" target="_blank"><i class="fab fa-google-plus mr-1"></i> Google+</a></li>
-            <li class="list-group-item bg-transparent border-0 p-0 mb-2"><a href="https://www.facebook.com/p/GPRO-Consulting-100057043189576/" target="_blank"><i class="fab fa-facebook mr-1"></i> Facebook</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="py-4 d-flex justify-content-center align-items-center">
-          <a class="mr-4" href="../privacy.html">Privacy & terms</a>
-          <a href="../sitemap.xml">Sitemap</a>
+        <div class="col-md-12">
+          <div class="py-4 d-flex justify-content-center align-items-center">
+            <a class="mr-4" href="../privacy.html">GPRO Consulting © 2024</a>
+          </div>
         </div>
       </div>
     </div>
