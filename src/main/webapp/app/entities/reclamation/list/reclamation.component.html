@@ -111,17 +111,10 @@
         </td>
         <td class="text-end">
           <div class="btn-group">
-            <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-              <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
-            </button>
-            <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-              <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }">Show Commentaire</span>
-            </button>
+
             <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
               <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+              <span class="d-none d-md-inline" >Voir et Corriger </span>
             </a>
             <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
               <fa-icon icon="pencil-alt"></fa-icon>
@@ -237,14 +230,6 @@
         </td>
         <td class="text-end">
           <div class="btn-group">
-            <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-              <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
-            </button>
-            <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-              <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }">Show Commentaire</span>
-            </button>
             <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
               <fa-icon icon="eye"></fa-icon>
               <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
@@ -362,17 +347,9 @@
       </td>
       <td class="text-end">
         <div class="btn-group">
-          <button type="submit" [routerLink]="['/piece-jointe']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-            <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.pieceJointe' | translate) }">Show Piece Jointe</span>
-          </button>
-          <button type="submit" [routerLink]="['/commentaire']" [queryParams]="{ 'filter[reclamationId.in]': reclamation.id }" class="btn btn-info btn-sm" data-cy="filterOtherEntityButton">
-            <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.show" [translateValues]="{ otherEntity: ('pfeApp.reclamation.commentaire' | translate) }">Show Commentaire</span>
-          </button>
           <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" reclamationTranslate="entity.action.view">Voir</span>
+            <span class="d-none d-md-inline" >Vérifier et Renvoyer</span>
           </a>
           <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
             <fa-icon icon="pencil-alt"></fa-icon>
@@ -408,7 +385,7 @@
       </div>
       }
       </li>
-      <button
+      <!--<button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-commentaire"
@@ -416,7 +393,7 @@
       >
         <fa-icon icon="plus"></fa-icon>
         <span>Ajouter un Commentaire</span>
-      </button>
+      </button>-->
     </div>
 
       <li
