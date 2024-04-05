@@ -34,6 +34,7 @@ import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.dir
         FilterComponent,
         ItemCountComponent,
         HasAnyAuthorityDirective,
+
     ],
 })
 export class ReclamationComponent implements OnInit {
@@ -66,7 +67,6 @@ export class ReclamationComponent implements OnInit {
   delete(reclamation: IReclamation): void {
     const modalRef = this.modalService.open(ReclamationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.reclamation = reclamation;
-    // unsubscribe not needed because closed completes on modal close
     modalRef.closed
       .pipe(
         filter(reason => reason === ITEM_DELETED_EVENT),
@@ -134,9 +134,9 @@ export class ReclamationComponent implements OnInit {
     this.isLoading = true;
     const pageToLoad: number = page ?? 1;
     const queryObject: any = {
-      page: pageToLoad - 1,
-     /* size: this.itemsPerPage,*/
-      sort: this.getSortQueryParam(predicate, ascending),
+      /*page: pageToLoad - 1,*/
+      size: 100000,
+      /*sort: this.getSortQueryParam(predicate, ascending),*/
     };
 
     return this.reclamationService.query(queryObject).pipe(tap(() => (this.isLoading = false)));

@@ -6,7 +6,6 @@ import { ReclamationComponent } from './list/reclamation.component';
 import { ReclamationDetailComponent } from './detail/reclamation-detail.component';
 import { ReclamationUpdateComponent } from './update/reclamation-update.component';
 import ReclamationResolve from './route/reclamation-routing-resolve.service';
-import {CorrectionComponent} from "./correction/correction.component";
 
 
 const reclamationRoute: Routes = [
@@ -18,14 +17,7 @@ const reclamationRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
-  {
-    path: 'correction',
-    component: CorrectionComponent,
-    data: {
-      defaultSort: 'id,' + ASC,
-    },
-    canActivate: [UserRouteAccessService],
-  },
+
 
   {
     path: ':id/view',

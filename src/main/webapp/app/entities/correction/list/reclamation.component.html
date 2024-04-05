@@ -19,12 +19,6 @@
   <div class="container-fluid">
 
     <div class="row">
-    <div class="text-center mt-2">
-      <button class="btn btn-info font-weight-bold" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Actualiser les listes</span>
-      </button>
-    </div>
       <h2 class="text-center mt-4" id="corrections-heading" data-cy="CorrectionsHeading">
         <strong class="corrections-title" style="font-weight: bold; font-family: Arial, sans-serif;">Corrections</strong>
       </h2>
@@ -93,7 +87,7 @@
 
       <tr data-cy="entityTable">
       <td>
-      <a [routerLink]="['/reclaéééééééééééééééééééééééééééééééééééééééééémation', reclamation.id, 'view']">{{ reclamation.id }}</a>
+      <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>
       </td>
       <td>{{ reclamation.categorie }}</td>
 
@@ -110,7 +104,7 @@
         <div class="btn-group">
           <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
-            <span class="d-none d-md-inline" >Voir</span>
+            <span class="d-none d-md-inline" >Voir et renvoyer </span>
           </a>
           <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
             <fa-icon icon="pencil-alt"></fa-icon>
@@ -130,21 +124,6 @@
     </table>
   </div>
 
-  <div class="d-flex justify-content-center">
-    <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
       }
       </li>
       <li
@@ -226,10 +205,10 @@
         </td>
         <td class="text-end">
           <div class="btn-group">
-            <a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <!--<a [routerLink]="['/reclamation', reclamation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
               <fa-icon icon="eye"></fa-icon>
-              <span class="d-none d-md-inline" >Voir</span>
-            </a>
+              <span class="d-none d-md-inline" >Voir et corriger</span>
+            </a>-->
             <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
               <fa-icon icon="pencil-alt"></fa-icon>
               <span class="d-none d-md-inline" >Editer</span>
@@ -248,21 +227,6 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
         }
       </li>
       <li
@@ -364,23 +328,15 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
         }
+
       </li>
+      <div class="text-center mt-2">
+        <button class="btn btn-info font-weight-bold" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+          <span>Actualiser les listes</span>
+        </button>
+      </div>
      <!-- <button
         id="jh-create -entity"
         data-cy="entityCreateButton"

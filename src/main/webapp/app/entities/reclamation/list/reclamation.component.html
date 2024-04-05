@@ -19,15 +19,6 @@
   <div class="container-fluid">
 
   <div class="row">
-
-    <div class="text-center mt-2">
-      <button class="btn btn-info font-weight-bold" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Actualiser les listes</span>
-      </button>
-    </div>
-
-
       <h2 class="text-center mt-4" id="reclamation-heading" data-cy="ReclamationHeading">
         <strong class="reclamation-title" style="font-weight: bold; font-family: Arial, sans-serif;">Réclamations</strong>
       </h2>
@@ -133,21 +124,6 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
         }
       </li>
       <li
@@ -251,21 +227,7 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
 
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
         }
       </li>
       <li
@@ -368,23 +330,14 @@
     </table>
   </div>
 
-  <div class="d-flex justify-content-center">
-    <reclamation-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></reclamation-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
       }
       </li>
+    <div class="text-center mt-2">
+      <button class="btn btn-info font-weight-bold" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Actualiser les listes</span>
+      </button>
+    </div>
       <!--<button
         id="jh-create-entity"
         data-cy="entityCreateButton"

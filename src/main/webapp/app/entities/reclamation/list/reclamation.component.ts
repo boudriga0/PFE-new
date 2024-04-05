@@ -134,9 +134,9 @@ export class ReclamationComponent implements OnInit {
     this.isLoading = true;
     const pageToLoad: number = page ?? 1;
     const queryObject: any = {
-      page: pageToLoad - 1,
-     /* size: this.itemsPerPage,*/
-      sort: this.getSortQueryParam(predicate, ascending),
+      /*page: pageToLoad - 1,*/
+      size: 100000,
+      /*sort: this.getSortQueryParam(predicate, ascending),*/
     };
 
     return this.reclamationService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
