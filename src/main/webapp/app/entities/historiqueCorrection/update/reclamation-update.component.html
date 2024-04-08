@@ -1,0 +1,107 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate [formGroup]="editForm">
+      <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
+        Créer  <span style="font-weight: normal;color:black;"> une Reclamation </span>
+      </h2>
+
+      <div>
+        <reclamation-alert-error></reclamation-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+        <div class="mb-3">
+          <label class="form-label" reclamationTranslate="global.field.id" for="field_id" style="font-family: Arial, sans-serif; font-weight: bold;">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+        }
+        <div class="mb-3">
+          <label class="form-label" for="field_categorie" style="font-family: Arial, sans-serif; font-weight: bold;">Nom du projet</label>
+          <input type="text" class="form-control" name="categorie" id="field_categorie" data-cy="categorie" formControlName="categorie" />
+        </div>
+
+
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numero" style="font-family: Arial, sans-serif; font-weight: bold;">Plainte</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" style="height: 100px;" />
+        </div>
+
+
+        <div class="mb-3">
+          <label class="form-label"  for="field_date" style="font-family: Arial, sans-serif; font-weight: bold;">Date</label>
+          <div class="input-group">
+            <input id="field_date" data-cy="date" type="text" class="form-control" name="date" ngbDatepicker #dateDp="ngbDatepicker" formControlName="date" />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"  for="field_personne" style="font-family: Arial, sans-serif; font-weight: bold;">Personne</label>
+          <select class="form-control" id="field_personne" data-cy="personne" name="personne" formControlName="personne" [compareWith]="comparePersonne">
+            <option [ngValue]="null"></option>
+            @for (personneOption of personnesSharedCollection; track $index) {
+            <option [ngValue]="personneOption">{{ personneOption.id }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_piece_jointe" style="font-family: Arial, sans-serif; font-weight: bold;">Pièce jointe</label>
+          <input type="file" class="form-control" name="piece_jointe" id="field_piece_jointe" data-cy="piece_jointe" formControlName="piece_jointe" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()" style="font-family: Arial, sans-serif;">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+      </div>
+      <div>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_USER'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveNotVerified()">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
+        </button>
+        </li>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveVerified()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer a l'équipe de développement</span>
+          </button>
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveValid()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer au client</span>
+          </button>
+        </li>
+        <li
+          *reclamationHasAnyAuthority="'ROLE_DEV'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+        >
+          <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+                  [disabled]="editForm.invalid || isSaving"
+                  class="btn btn-primary" style="font-family: Arial, sans-serif;" (click)="saveDeveloped()">
+            <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
+          </button>
+
+        </li>
+      </div>
+    </form>
+  </div>
+</div>

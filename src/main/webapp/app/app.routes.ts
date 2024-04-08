@@ -8,12 +8,11 @@ import NavbarComponent from './layouts/navbar/navbar.component';
 import LoginComponent from './login/login.component';
 
 import {SidebarComponent} from "./layouts/sidebar/sidebar.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FooterComponent} from "./layouts/footer/footer.component";
+import {PageComponent} from "./page/page.component";
 
 
 const routes: Routes = [
-
 
   {
     path: '',
@@ -31,12 +30,10 @@ const routes: Routes = [
     outlet: 'footer',
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    outlet: 'dashboard',
+    path: 'page',
+    component: PageComponent,
+
   },
-
-
   {
     path: 'admin',
     data: {

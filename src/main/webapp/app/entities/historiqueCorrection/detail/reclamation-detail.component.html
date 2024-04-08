@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (reclamation) {
+      <div>
+        <h2 data-cy="reclamationDetailsHeading"><span reclamationTranslate="pfeApp.reclamation.detail.title">Reclamation</span></h2>
+
+        <hr />
+
+        <reclamation-alert-error></reclamation-alert-error>
+
+        <reclamation-alert></reclamation-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span reclamationTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ reclamation.id }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.reclamation.categorie">Categorie</span></dt>
+          <dd>
+            <span>{{ reclamation.categorie }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.reclamation.etat">Etat</span></dt>
+          <dd>
+            <span>{{ reclamation.etat }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.reclamation.numero">Numero</span></dt>
+          <dd>
+            <span>{{ reclamation.numero }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.reclamation.date">Date</span></dt>
+          <dd>
+            <span>{{ reclamation.date | formatMediumDate }}</span>
+          </dd>
+          <dt><span reclamationTranslate="pfeApp.reclamation.personne">Personne</span></dt>
+          <dd>
+            @if (reclamation.personne) {
+              <div>
+                <a [routerLink]="['/personne', reclamation.personne.id, 'view']">{{ reclamation.personne.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

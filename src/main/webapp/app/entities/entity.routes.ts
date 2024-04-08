@@ -21,6 +21,16 @@ const routes: Routes = [
     data: { pageTitle: 'pfeApp.correction.home.title' },
     loadChildren: () => import('./correction/reclamation.routes'),
   },
+  {
+    path: 'historiqueCorrection',
+    data: { pageTitle: 'pfeApp.historiqueCorrection.home.title' },
+    loadChildren: () => import('./historiqueCorrection/reclamation.routes'),
+  },
+  {
+    path: 'historiqueReclamation',
+    data: { pageTitle: 'pfeApp.historiqueReclamation.home.title' },
+    loadChildren: () => import('./historiqueReclamation/reclamation.routes'),
+  },
 
 
   {
@@ -33,6 +43,7 @@ const routes: Routes = [
     data: { pageTitle: 'pfeApp.pieceJointe.home.title' },
     loadChildren: () => import('./piece-jointe/piece-jointe.routes'),
   },
+
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 
