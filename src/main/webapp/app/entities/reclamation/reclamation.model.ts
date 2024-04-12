@@ -10,9 +10,13 @@ export interface IReclamation {
   numero?: string | null;
   date?: dayjs.Dayjs | null;
   isDeveloping?: string | null;
+
+  pieceJointe?: string | null;
+
   pieceJointes?: Pick<IPieceJointe, 'id'>[] | null;
   commentaires?: Pick<ICommentaire, 'id'>[] | null;
   personne?: Pick<IPersonne, 'id'> | null;
+
 }
 
 export type NewReclamation = Omit<IReclamation, 'id'> & { id: null };

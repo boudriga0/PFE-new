@@ -21,7 +21,7 @@ export default class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private appPageTitleStrategy: AppPageTitleStrategy,
-    private accountService: AccountService,
+    public accountService: AccountService,
     private translateService: TranslateService,
     rootRenderer: RendererFactory2,
   ) {

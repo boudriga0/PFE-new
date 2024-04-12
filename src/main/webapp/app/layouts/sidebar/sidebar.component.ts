@@ -20,6 +20,7 @@ export class SidebarComponent {
   constructor(
     private loginService: LoginService,
     private router: Router,
+
   ){
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
@@ -27,6 +28,6 @@ export class SidebarComponent {
   }
   logout(): void {
     this.loginService.logout();
-    this.router.navigate(['']);
+    this.router.navigate(['/page']);
   }
 }

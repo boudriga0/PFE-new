@@ -58,7 +58,7 @@ export class ReclamationUpdateComponent implements OnInit {
   saveNotVerified(): void {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
-
+    console.log(reclamation.pieceJointe)
     reclamation.etat = "notVerified";
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
