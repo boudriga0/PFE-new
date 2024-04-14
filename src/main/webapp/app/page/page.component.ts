@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import {RouterModule} from "@angular/router";
+import {Component, Renderer2, RendererFactory2} from '@angular/core';
+import {Router, RouterModule} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {AppPageTitleStrategy} from "../app-page-title-strategy";
+import {AccountService} from "../core/auth/account.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'reclamation-page',
@@ -11,5 +14,12 @@ import {NgIf} from "@angular/common";
 })
 export class PageComponent {
   isAuthenticated: boolean = false;
+  constructor(
+    public accountService: AccountService,
 
+
+  ){}
+  isLoggedIn(): boolean {
+    return this.accountService.isAuthenticated();
+  }
 }

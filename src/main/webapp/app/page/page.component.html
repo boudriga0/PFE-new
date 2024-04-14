@@ -15,6 +15,7 @@
       font-size: 10px;
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
+
     }
     a {
       text-decoration: none;
@@ -25,6 +26,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-grow: 1;
     }
 
     img {
@@ -75,20 +77,27 @@
       color: white;
     }
     .brand h1 span {
-      color: #145adc;
+    color: #145adc;
     }
     #hero {
-      background-image: url('/content/images/Blue Dark Professional Geometric Business Project Presentation .jpg');
+      background: url('/content/images/Blue and Green Modern Professional Company Profile Presentation (1).jpg') center top no-repeat;
       background-size: cover;
-      background-position: center top;
       position: relative;
       z-index: 1;
+      width: 100vw;
+      padding: 100px 20px;
     }
+
     #hero .hero {
-      max-width: 1200px;
+      max-width: 20000000px;
       margin: 0 auto;
       padding: 0 50px;
       justify-content: flex-start;
+    }
+
+    #about {
+      width: 100vw;
+      padding: 100px 20px;
     }
     #hero h1 {
       display: block;
@@ -235,23 +244,21 @@
 
   </style>
 </head>
-
 <body>
 
-<section id="hero">
+<section id="hero" *ngIf="!isLoggedIn()">
   <div class="hero container">
     <div>
       <h1>Gestion <span></span></h1>
       <h1>des <span></span></h1>
       <h1>RÉCLAMATIONS<span></span></h1>
-      <a routerLink="/" type="button" class="cta">LOGIN</a>
+      <a routerLink="/login" type="button" class="cta" >LOGIN</a>
     </div>
   </div>
 </section>
 
-
-<section id="about">
-  <div class="about container">
+<section id="about" >
+  <div class="about container" >
     <div class="col-left image-container">
       <div class="about-img">
         <img src="../../content/images/images.png" height="194" width="259" />
@@ -267,5 +274,4 @@
 </section>
 
 </body>
-
 </html>

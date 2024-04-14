@@ -28,6 +28,6 @@ export class SidebarComponent {
   }
   logout(): void {
     this.loginService.logout();
-    this.router.navigate(['/page']);
+    this.router.navigate(['']);
   }
 }

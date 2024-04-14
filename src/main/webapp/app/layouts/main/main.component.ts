@@ -7,13 +7,14 @@ import { AccountService } from 'app/core/auth/account.service';
 import { AppPageTitleStrategy } from 'app/app-page-title-strategy';
 import PageRibbonComponent from '../profiles/page-ribbon.component';
 import {FooterComponent} from "../footer/footer.component";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'reclamation-main',
   standalone: true,
   templateUrl: './main.component.html',
   providers: [AppPageTitleStrategy],
-  imports: [RouterOutlet, FooterComponent, PageRibbonComponent],
+  imports: [RouterOutlet, FooterComponent, PageRibbonComponent, CommonModule],
 })
 export default class MainComponent implements OnInit {
   private renderer: Renderer2;
@@ -29,7 +30,6 @@ export default class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // try to log in automatically
     this.accountService.identity().subscribe();
 
     this.translateService.onLangChange.subscribe((langChangeEvent: LangChangeEvent) => {
@@ -37,5 +37,8 @@ export default class MainComponent implements OnInit {
       dayjs.locale(langChangeEvent.lang);
       this.renderer.setAttribute(document.querySelector('html'), 'lang', langChangeEvent.lang);
     });
+  }
+  isAuthenticated(): boolean {
+    return this.accountService.isAuthenticated();
   }
 }

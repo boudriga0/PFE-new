@@ -6,11 +6,12 @@
   </div>
   <div class="row">
 
-    <div class="col-md-2">
+    <div class="col-md-2" *ngIf="isAuthenticated()">
       @if (accountService.isAuthenticated()) {
       <router-outlet name="sidebar"></router-outlet>
       }
     </div>
+
     <div class="col-md-10">
       <div class="card jh-card">
         <router-outlet></router-outlet>

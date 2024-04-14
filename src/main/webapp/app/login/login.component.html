@@ -39,8 +39,10 @@
       border: 2px solid rgba(255,255,255,0.1);
       box-shadow: 0 0 40px rgba(8,7,16,0.6);
       padding: 50px 35px;
-      margin: 0 auto; /* Ajout */
+      margin: 0 auto; /* Centre le formulaire horizontalement */
+      transform: translateX(5cm); /* Décale le formulaire de 10cm vers la gauche */
     }
+
     .auth-form *{ /* Changement de cette ligne */
       font-family: 'Poppins',sans-serif;
       color: #000000;
@@ -99,6 +101,9 @@
   <div class="shape"></div>
   <div class="shape"></div>
 </div>
+
+<div style="height: 2cm;"></div> <!-- Ajouter cinq lignes vides avant le formulaire -->
+
 <form class="auth-form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
   <img src="/content/images/login.png" alt="Authentification" data-cy="loginImage" class="small-image" /> <!-- Ajout de la classe small-image pour l'image -->
   <h1>
@@ -129,5 +134,8 @@
     <a class="alert-link" routerLink="/account/register">Créer un compte</a>
   </div>
 </form>
+
+<div style="height: 2cm;"></div> <!-- Ajouter cinq lignes vides après le formulaire -->
+
 </body>
 </html>

@@ -30,7 +30,7 @@ const routes: Routes = [
     outlet: 'footer',
   },
   {
-    path: 'page',
+    path: '',
     component: PageComponent,
 
   },
@@ -47,7 +47,7 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.route'),
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent,
     title: 'login.title',
   },
