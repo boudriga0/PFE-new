@@ -90,6 +90,7 @@
     "ionicons": "^7.3.1",
     "ng-sidebar": "^9.4.3",
     "ngx-infinite-scroll": "17.0.0",
+    "pdfmake": "^0.2.10",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.2"
@@ -104,6 +105,7 @@
     "@angular/service-worker": "17.0.6",
     "@types/jest": "29.5.11",
     "@types/node": "18.19.3",
+    "@types/pdfmake": "^0.2.9",
     "@typescript-eslint/eslint-plugin": "6.13.2",
     "@typescript-eslint/parser": "6.13.2",
     "browser-sync": "2.29.3",

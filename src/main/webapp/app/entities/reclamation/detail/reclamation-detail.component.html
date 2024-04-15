@@ -121,8 +121,8 @@
         </button>
             </li>
 
-             <a href="download/acme-doc-2.0.1.txt" download="Acme Documentation (ver. 2.0.1).txt" class="custom-button btn-telecharger">
-          <fa-icon [icon]="['fas', 'download']"></fa-icon>&nbsp;<span class="align-middle">Télécharger</span>
+             <a class="custom-button btn-telecharger" (click)="generatePDF()">
+          <fa-icon [icon]="['fas','download']"></fa-icon>&nbsp;<span class="align-middle">Télécharger</span>
         </a>
 
             <li *reclamationHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active">
