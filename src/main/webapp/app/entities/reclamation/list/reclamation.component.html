@@ -73,12 +73,6 @@
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
-          <th scope="col" reclamationSortBy="personne.id">
-          <div class="d-flex">
-          <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
           <th scope="col"></th>
           </tr>
           </thead>
@@ -107,10 +101,7 @@
               <fa-icon icon="eye"></fa-icon>
               <span class="d-none d-md-inline" >Voir et Corriger </span>
             </a>
-            <a [routerLink]="['/reclamation', reclamation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-              <fa-icon icon="pencil-alt"></fa-icon>
-              <span class="d-none d-md-inline" reclamationTranslate="entity.action.edit">Editer</span>
-            </a>
+
             <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
               <fa-icon icon="times"></fa-icon>
               <span class="d-none d-md-inline" reclamationTranslate="entity.action.delete">Supprimer</span>
@@ -174,12 +165,6 @@
           <th scope="col" reclamationSortBy="date">
           <div class="d-flex">
           <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
-          <fa-icon class="p-1" icon="sort"></fa-icon>
-          </div>
-          </th>
-          <th scope="col" reclamationSortBy="personne.id">
-          <div class="d-flex">
-          <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
           <fa-icon class="p-1" icon="sort"></fa-icon>
           </div>
           </th>
@@ -278,12 +263,6 @@
         <th scope="col" reclamationSortBy="date">
         <div class="d-flex">
         <span reclamationTranslate="pfeApp.reclamation.date">Date</span>
-        <fa-icon class="p-1" icon="sort"></fa-icon>
-        </div>
-        </th>
-        <th scope="col" reclamationSortBy="personne.id">
-        <div class="d-flex">
-        <span reclamationTranslate="pfeApp.reclamation.personne">Personne</span>
         <fa-icon class="p-1" icon="sort"></fa-icon>
         </div>
         </th>

@@ -66,7 +66,6 @@ export class ReclamationComponent implements OnInit {
   delete(reclamation: IReclamation): void {
     const modalRef = this.modalService.open(ReclamationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.reclamation = reclamation;
-    // unsubscribe not needed because closed completes on modal close
     modalRef.closed
       .pipe(
         filter(reason => reason === ITEM_DELETED_EVENT),

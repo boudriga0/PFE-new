@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
 import { SortDirective, SortByDirective } from 'app/shared/sort';
 import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'app/shared/date';
-import { ItemCountComponent } from 'app/shared/pagination';
+
 import { FormsModule } from '@angular/forms';
 import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
@@ -17,25 +17,31 @@ import { IReclamation } from '../reclamation.model';
 import { EntityArrayResponseType, ReclamationService } from '../service/reclamation.service';
 import { ReclamationDeleteDialogComponent } from '../delete/reclamation-delete-dialog.component';
 import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
-
+import ItemCountComponent from "../../../shared/pagination/item-count.component";
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation',
   templateUrl: './reclamation.component.html',
-    imports: [
-        RouterModule,
-        FormsModule,
-        SharedModule,
-        SortDirective,
-        SortByDirective,
-        DurationPipe,
-        FormatMediumDatetimePipe,
-        FormatMediumDatePipe,
-        FilterComponent,
-        ItemCountComponent,
-        HasAnyAuthorityDirective,
+  imports: [
+    RouterModule,
+    FormsModule,
+    SharedModule,
+    SortDirective,
+    SortByDirective,
+    DurationPipe,
+    FormatMediumDatetimePipe,
+    FormatMediumDatePipe,
+    FilterComponent,
+    ItemCountComponent,
+    HasAnyAuthorityDirective,
+    ItemCountComponent,
+    ItemCountComponent,
+    NgbPagination,
+    ItemCountComponent,
+    ItemCountComponent,
+    ItemCountComponent,
 
-    ],
+  ],
 })
 export class ReclamationComponent implements OnInit {
   reclamations?: IReclamation[];
@@ -78,7 +84,15 @@ export class ReclamationComponent implements OnInit {
         },
       });
   }
-
+  transition(): void {
+    this.router.navigate(['./'], {
+      relativeTo: this.activatedRoute.parent,
+      queryParams: {
+        page: this.page,
+        sort: `${this.predicate},${this.ascending ? ASC : DESC}`,
+      },
+    });
+  }
   load(): void {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
