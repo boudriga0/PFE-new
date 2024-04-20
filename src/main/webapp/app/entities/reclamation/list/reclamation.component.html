@@ -173,7 +173,7 @@
           </thead>
           <tbody>
           @for (reclamation of reclamations; track trackId) {
-          @if (reclamation.etat === 'notVerified') {
+          @if (reclamation.etat ==='notVerified' && settingsForm.value.email===reclamation.email ) {
         <tr data-cy="entityTable">
         <td>
         <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>

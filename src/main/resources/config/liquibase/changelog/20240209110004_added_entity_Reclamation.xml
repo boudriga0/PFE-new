@@ -17,6 +17,9 @@
             <column name="categorie" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="etat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -51,6 +54,7 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="categorie" type="string"/>
+            <column name="email" type="string"/>
             <column name="etat" type="string"/>
             <column name="numero" type="string"/>
             <column name="date" type="date"/>

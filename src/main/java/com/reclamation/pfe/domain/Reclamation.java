@@ -28,9 +28,8 @@ public class Reclamation implements Serializable {
 
     @Column(name = "categorie")
     private String categorie;
-
-    @Column(name = "isDeveloping")
-    private String isDeveloping;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "etat")
     private String etat;
@@ -81,18 +80,21 @@ public class Reclamation implements Serializable {
         this.categorie = categorie;
     }
 
-    public String getIsDeveloping() {
-        return this.isDeveloping;
+    public String getEmail() {
+        return this.email;
     }
 
-    public Reclamation isDeveloping(String isDeveloping) {
-        this.setIsDeveloping(isDeveloping);
+    public Reclamation email(String email) {
+        this.setEmail(email);
         return this;
     }
 
-    public void setIsDeveloping(String isDeveloping) {
-        this.isDeveloping = isDeveloping;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+
+
 
     public String getEtat() {
         return this.etat;
@@ -233,10 +235,10 @@ public class Reclamation implements Serializable {
         return "Reclamation{" +
             "id=" + getId() +
             ", categorie='" + getCategorie() + "'" +
+            ", email='" + getEmail() + "'" +
             ", etat='" + getEtat() + "'" +
             ", numero='" + getNumero() + "'" +
             ", date='" + getDate() + "'" +
-            ", isDeveloping='" + getIsDeveloping() + "'" +
             "}";
     }
 }

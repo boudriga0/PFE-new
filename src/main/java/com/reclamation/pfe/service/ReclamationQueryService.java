@@ -93,6 +93,9 @@ public class ReclamationQueryService extends QueryService<Reclamation> {
             if (criteria.getCategorie() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCategorie(), Reclamation_.categorie));
             }
+            if (criteria.getEmail() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEmail(), Reclamation_.email));
+            }
             if (criteria.getEtat() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getEtat(), Reclamation_.etat));
             }

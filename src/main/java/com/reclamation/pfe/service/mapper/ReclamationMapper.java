@@ -17,5 +17,6 @@ public interface ReclamationMapper extends EntityMapper<ReclamationDTO, Reclamat
     @Named("personneId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "email", source = "email")
     PersonneDTO toDtoPersonneId(Personne personne);
 }

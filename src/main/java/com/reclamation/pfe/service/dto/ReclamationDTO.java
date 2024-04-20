@@ -13,6 +13,7 @@ public class ReclamationDTO implements Serializable {
     private Long id;
 
     private String categorie;
+    private String email;
 
     private String etat;
 
@@ -36,6 +37,13 @@ public class ReclamationDTO implements Serializable {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getEtat() {
@@ -101,6 +109,7 @@ public class ReclamationDTO implements Serializable {
             ", numero='" + getNumero() + "'" +
             ", date='" + getDate() + "'" +
             ", personne=" + getPersonne() +
+            ", email=" + getEmail() +
             "}";
     }
 }

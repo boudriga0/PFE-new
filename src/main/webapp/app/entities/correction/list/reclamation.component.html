@@ -193,7 +193,7 @@
           </thead>
           <tbody>
           @for (reclamation of reclamations; track trackId) {
-          @if (reclamation.etat ==='isValid') {
+          @if (reclamation.etat ==='isValid' && settingsForm.value.email === settingsForm.value.login ) {
 
 
         <tr data-cy="entityTable">
@@ -291,7 +291,8 @@
           </thead>
           <tbody>
           @for (reclamation of reclamations; track trackId) {
-          @if (reclamation.etat ==='isValid') {
+          @if (reclamation.etat ==='isValid' && settingsForm.value.email===reclamation.email ) {
+
         <tr data-cy="entityTable">
         <td>
         <a [routerLink]="['/reclamation', reclamation.id, 'view']">{{ reclamation.id }}</a>

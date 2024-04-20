@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import { IPersonne } from 'app/entities/personne/personne.model';
 import { PersonneService } from 'app/entities/personne/service/personne.service';
@@ -14,6 +14,9 @@ import { ReclamationService } from '../service/reclamation.service';
 import { ReclamationFormService, ReclamationFormGroup } from './reclamation-form.service';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
+import {AccountService} from "../../../core/auth/account.service";
+import {Account} from "../../../core/auth/account.model";
+const initialAccount: Account = {} as Account;
 
 @Component({
   standalone: true,
@@ -29,12 +32,20 @@ export class ReclamationUpdateComponent implements OnInit {
   personnesSharedCollection: IPersonne[] = [];
 
   editForm: ReclamationFormGroup = this.reclamationFormService.createReclamationFormGroup();
-
+  settingsForm = new FormGroup({
+    email: new FormControl(initialAccount.email, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
+    }),
+    login: new FormControl(initialAccount.login, { nonNullable: true }),
+  });
+  email: string = "";
   constructor(
     protected reclamationService: ReclamationService,
     protected reclamationFormService: ReclamationFormService,
     protected personneService: PersonneService,
     protected activatedRoute: ActivatedRoute,
+    private accountService: AccountService,
   ) {}
 
   comparePersonne = (o1: IPersonne | null, o2: IPersonne | null): boolean => this.personneService.comparePersonne(o1, o2);
@@ -48,6 +59,15 @@ export class ReclamationUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    this.accountService.identity().subscribe(account => {
+      if (account) {
+        console.log(account)
+        this.email = account.email;
+        this.settingsForm.patchValue(account)
+        this.settingsForm.patchValue({ email: account.email });
+      }
+    });
+
   }
 
   previousState(): void {
@@ -60,6 +80,8 @@ export class ReclamationUpdateComponent implements OnInit {
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
     console.log(reclamation.pieceJointe)
     reclamation.etat = "notVerified";
+    reclamation.email = this.email;
+    console.log(this.email)
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {

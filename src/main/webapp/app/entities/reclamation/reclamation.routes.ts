@@ -6,6 +6,8 @@ import { ReclamationComponent } from './list/reclamation.component';
 import { ReclamationDetailComponent } from './detail/reclamation-detail.component';
 import { ReclamationUpdateComponent } from './update/reclamation-update.component';
 import ReclamationResolve from './route/reclamation-routing-resolve.service';
+import settingsRoute from "../../account/settings/settings.route";
+import {FormGroup} from "@angular/forms";
 
 
 const reclamationRoute: Routes = [
@@ -43,6 +45,8 @@ const reclamationRoute: Routes = [
     },
     canActivate: [UserRouteAccessService],
   },
+  settingsRoute,
+
 ];
 
 export default reclamationRoute;

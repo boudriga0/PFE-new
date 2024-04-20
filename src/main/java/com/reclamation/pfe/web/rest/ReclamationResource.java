@@ -63,11 +63,13 @@ public class ReclamationResource {
      */
     @PostMapping("")
     public ResponseEntity<ReclamationDTO> createReclamation(@RequestBody ReclamationDTO reclamationDTO) throws URISyntaxException {
+        System.out.println("****" + reclamationDTO);
         log.debug("REST request to save Reclamation : {}", reclamationDTO);
         if (reclamationDTO.getId() != null) {
             throw new BadRequestAlertException("A new reclamation cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ReclamationDTO result = reclamationService.save(reclamationDTO);
+        System.out.println("---" + result);
         return ResponseEntity
             .created(new URI("/api/reclamations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))

@@ -14,43 +14,36 @@
       margin-right: 10px;
     }
 
-    /* Style pour le bouton "Retour" */
     .btn-retour {
       background-color: #777e85;
       color: #fff;
     }
 
-    /* Style pour le bouton "Corriger" */
     .btn-corriger {
       background-color: #49cbf8;
       color: #212529;
     }
-
-    /* Style pour le bouton "Télécharger" */
     .btn-telecharger {
       background-color: #014c64;
       color: #fff;
     }
 
-    /* Style pour le bouton "Envoyer" */
+
     .btn-envoyer {
       background-color: #dc3545;
       color: #fff;
     }
 
-    /* Style pour le cadre noir */
     .contenu {
-      border: 6px solid blue; /* Couleur et épaisseur de la bordure */
-      padding: 20px; /* Espacement intérieur */
+      border: 6px solid blue;
+      padding: 20px;
     }
 
-    /* Style pour augmenter la taille de la police */
     .custom-button,
     .contenu {
-      font-size: 18px; /* Taille de la police */
+      font-size: 18px;
     }
 
-    /* Style pour le champ de pièce jointe */
     .custom-file-input {
       display: inline-block;
       width: auto;
@@ -74,6 +67,7 @@
   <div style="width: 70%; max-width: 800px; border: 2px solid #333; background-color: #fff;" class="contenu">
     <div class="d-flex justify-content-center">
       <div class="col-8" style="color: #333; font-family: Arial, sans-serif;">
+
         @if (reclamation) {
         <div>
           <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
@@ -82,14 +76,20 @@
 
           <hr />
 
+
           <reclamation-alert-error style="color: #dc3545;"></reclamation-alert-error>
 
           <reclamation-alert style="font-style: italic;"></reclamation-alert>
 
           <dl class="row-md jh-entity-details">
+
             <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="global.field.id">ID</span></dt>
             <dd>
               <span>{{ reclamation.id }}</span>
+            </dd>
+            <dt style="font-weight: bold; text-align: left;"><span>Email</span></dt>
+            <dd>
+              <span>{{ reclamation.email }}</span>
             </dd>
             <dt style="font-weight: bold; text-align: left;"><span >Nom du projet </span></dt>
             <dd>
@@ -104,6 +104,7 @@
               <span>{{ reclamation.numero }}</span>
             </dd>
           </dl>
+
 
           <!-- <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="pfeApp.reclamation.pieceJointe">Piece jointe</span></dt>
            <dd>

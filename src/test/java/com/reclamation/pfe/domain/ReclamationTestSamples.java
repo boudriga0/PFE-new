@@ -21,6 +21,7 @@ public class ReclamationTestSamples {
         return new Reclamation()
             .id(longCount.incrementAndGet())
             .categorie(UUID.randomUUID().toString())
+            .email(UUID.randomUUID().toString())
             .etat(UUID.randomUUID().toString())
             .numero(UUID.randomUUID().toString());
     }

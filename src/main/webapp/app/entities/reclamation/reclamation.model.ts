@@ -6,11 +6,10 @@ import { IPersonne } from 'app/entities/personne/personne.model';
 export interface IReclamation {
   id: number;
   categorie?: string | null;
+  email?: string | null;
   etat?: string | null;
   numero?: string | null;
   date?: dayjs.Dayjs | null;
-  isDeveloping?: string | null;
-
   pieceJointe?: string | null;
 
   pieceJointes?: Pick<IPieceJointe, 'id'>[] | null;

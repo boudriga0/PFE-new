@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router, RouterModule } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
-import {NgbModal, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
 import { SortDirective, SortByDirective } from 'app/shared/sort';
 import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'app/shared/date';
 
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { FilterComponent, FilterOptions, IFilterOptions, IFilterOption } from 'app/shared/filter';
@@ -18,6 +18,11 @@ import { EntityArrayResponseType, ReclamationService } from '../service/reclamat
 import { ReclamationDeleteDialogComponent } from '../delete/reclamation-delete-dialog.component';
 import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
 import ItemCountComponent from "../../../shared/pagination/item-count.component";
+import { Account } from "../../../core/auth/account.model";
+import { AccountService } from "../../../core/auth/account.service";
+
+const initialAccount: Account = {} as Account;
+
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation',
@@ -34,13 +39,7 @@ import ItemCountComponent from "../../../shared/pagination/item-count.component"
     FilterComponent,
     ItemCountComponent,
     HasAnyAuthorityDirective,
-    ItemCountComponent,
-    ItemCountComponent,
     NgbPagination,
-    ItemCountComponent,
-    ItemCountComponent,
-    ItemCountComponent,
-
   ],
 })
 export class ReclamationComponent implements OnInit {
@@ -54,21 +53,40 @@ export class ReclamationComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 1;
-
+  settingsForm = new FormGroup({
+    email: new FormControl(initialAccount.email, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
+    }),
+    login: new FormControl(initialAccount.login, { nonNullable: true }),
+  });
+  email: string = "";
   constructor(
     protected reclamationService: ReclamationService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected modalService: NgbModal,
+    private accountService: AccountService,
   ) {}
 
-  trackId = (_index: number, item: IReclamation): number => this.reclamationService.getReclamationIdentifier(item);
-
   ngOnInit(): void {
+    this.accountService.identity().subscribe(account => {
+      if (account) {
+        console.log(account)
+        this.email = account.email;
+        this.settingsForm.patchValue({ email: account.email });
+        this.settingsForm.patchValue(account);
+
+      }
+
+    });
+
     this.load();
 
     this.filters.filterChanges.subscribe(filterOptions => this.handleNavigation(1, this.predicate, this.ascending, filterOptions));
   }
+
+  trackId = (_index: number, item: IReclamation): number => this.reclamationService.getReclamationIdentifier(item);
 
   delete(reclamation: IReclamation): void {
     const modalRef = this.modalService.open(ReclamationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
@@ -84,6 +102,7 @@ export class ReclamationComponent implements OnInit {
         },
       });
   }
+
   transition(): void {
     this.router.navigate(['./'], {
       relativeTo: this.activatedRoute.parent,
@@ -93,6 +112,7 @@ export class ReclamationComponent implements OnInit {
       },
     });
   }
+
   load(): void {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
