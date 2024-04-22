@@ -7,7 +7,6 @@ import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'ap
 import { IReclamation } from '../reclamation.model';
 import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
 import { findIconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { createPdf } from "pdfmake/build/pdfmake";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Account} from "../../../core/auth/account.model";
 import {TranslateModule} from "@ngx-translate/core";
@@ -36,7 +35,8 @@ export class ReclamationDetailComponent {
   email: string = "";
 
   constructor(protected activatedRoute: ActivatedRoute,
-              private accountService: AccountService,) {}
+              private accountService: AccountService,
+              ) {}
 
   previousState(): void {
     window.history.back();

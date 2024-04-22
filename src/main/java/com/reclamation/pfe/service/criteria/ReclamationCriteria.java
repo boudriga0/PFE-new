@@ -24,6 +24,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     private LongFilter id;
 
     private StringFilter categorie;
+    private StringFilter piece;
     private StringFilter email;
 
     private StringFilter etat;
@@ -46,6 +47,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public ReclamationCriteria(ReclamationCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.categorie = other.categorie == null ? null : other.categorie.copy();
+        this.piece = other.piece == null ? null : other.piece.copy();
         this.email = other.email == null ? null : other.email.copy();
         this.etat = other.etat == null ? null : other.etat.copy();
         this.numero = other.numero == null ? null : other.numero.copy();
@@ -92,6 +94,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public void setCategorie(StringFilter categorie) {
         this.categorie = categorie;
     }
+
     public StringFilter getEmail() {
         return email;
     }
@@ -106,6 +109,22 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     public void setEmail(StringFilter email) {
         this.email = email;
+    }
+
+    public StringFilter getPiece() {
+        return piece;
+    }
+
+
+    public StringFilter piece() {
+        if (piece == null) {
+            piece = new StringFilter();
+        }
+        return piece;
+    }
+
+    public void setPiece(StringFilter piece) {
+        this.piece = piece;
     }
 
     public StringFilter getIsDeveloping() {

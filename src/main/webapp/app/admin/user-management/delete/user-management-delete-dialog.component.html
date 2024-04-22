@@ -8,7 +8,7 @@
       <h4 class="modal-title" reclamationTranslate="entity.delete.title">Confirmation de suppression</h4>
 
       <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()" style="color: #fff">
-        &times;
+        &times
       </button>
     </div>
 
@@ -25,7 +25,7 @@
         <fa-icon icon="ban"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.cancel">Annuler</span>
       </button>
 
-      <button type="submit" class="btn btn-danger" style="color: #fff">
+      <button type="submit" (click)="confirmDelete(user.login!)" class="btn btn-danger" style="color: #fff">
         <fa-icon icon="times"></fa-icon>&nbsp;<span reclamationTranslate="entity.action.delete">Supprimer</span>
       </button>
     </div>

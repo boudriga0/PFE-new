@@ -13,6 +13,7 @@ public class ReclamationDTO implements Serializable {
     private Long id;
 
     private String categorie;
+    private String piece;
     private String email;
 
     private String etat;
@@ -37,6 +38,13 @@ public class ReclamationDTO implements Serializable {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+    public String getPiece() {
+        return piece;
+    }
+
+    public void setPiece(String piece) {
+        this.piece = piece;
     }
     public String getEmail() {
         return email;

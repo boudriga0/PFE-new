@@ -39,6 +39,7 @@ class ReclamationResourceIT {
     private static final String DEFAULT_CATEGORIE = "AAAAAAAAAA";
     private static final String UPDATED_CATEGORIE = "BBBBBBBBBB";
 
+
     private static final String DEFAULT_ETAT = "AAAAAAAAAA";
     private static final String UPDATED_ETAT = "BBBBBBBBBB";
 

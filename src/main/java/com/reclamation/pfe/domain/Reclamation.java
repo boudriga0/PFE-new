@@ -28,6 +28,8 @@ public class Reclamation implements Serializable {
 
     @Column(name = "categorie")
     private String categorie;
+    @Column(name = "piece")
+    private String piece;
     @Column(name = "email")
     private String email;
 
@@ -78,6 +80,18 @@ public class Reclamation implements Serializable {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+    public String getPiece() {
+        return this.piece;
+    }
+
+    public Reclamation piece(String piece) {
+        this.setPiece(piece);
+        return this;
+    }
+
+    public void setPiece(String piece) {
+        this.piece = piece;
     }
 
     public String getEmail() {
