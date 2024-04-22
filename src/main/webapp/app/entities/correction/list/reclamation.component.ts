@@ -201,4 +201,28 @@ export class ReclamationComponent implements OnInit {
       return [predicate + ',' + ascendingQueryParam];
     }
   }
+  confirmDelete(id: number): void {
+    this.reclamationService.delete(id).subscribe(() => {
+      this.loadAll();
+    }, (error) => {
+      console.error('Delete error:', error);
+    });
+  }
+
+  loadAll(): void {
+    this.isLoading = true;
+    this.reclamationService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+  }
+  private sort(): string[] {
+    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
 }

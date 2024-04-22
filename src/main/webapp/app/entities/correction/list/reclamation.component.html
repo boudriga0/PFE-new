@@ -104,7 +104,7 @@
             <fa-icon icon="pencil-alt"></fa-icon>
             <span class="d-none d-md-inline" >Editer</span>
           </a>
-          <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+          <button type="submit" (click)="confirmDelete(reclamation.id!)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
             <fa-icon icon="times"></fa-icon>
             <span class="d-none d-md-inline">Supprimer</span>
           </button>
@@ -220,7 +220,7 @@
               <fa-icon icon="pencil-alt"></fa-icon>
               <span class="d-none d-md-inline" >Editer</span>
             </a>
-            <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <button type="submit" (click)="confirmDelete(reclamation.id!)"class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
               <fa-icon icon="times"></fa-icon>
               <span class="d-none d-md-inline">Supprimer</span>
             </button>
@@ -318,7 +318,7 @@
               <fa-icon icon="pencil-alt"></fa-icon>
               <span class="d-none d-md-inline" >Editer</span>
             </a>-->
-            <button type="submit" (click)="delete(reclamation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <button type="submit" (click)="confirmDelete(reclamation.id!)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
               <fa-icon icon="times"></fa-icon>
               <span class="d-none d-md-inline">Supprimer</span>
             </button>

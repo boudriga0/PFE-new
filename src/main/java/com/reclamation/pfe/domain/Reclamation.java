@@ -2,12 +2,16 @@ package com.reclamation.pfe.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.cfg.AvailableSettings;
 
 /**
  * A Reclamation.
@@ -28,8 +32,8 @@ public class Reclamation implements Serializable {
 
     @Column(name = "categorie")
     private String categorie;
-    @Column(name = "piece")
-    private String piece;
+
+
     @Column(name = "email")
     private String email;
 
@@ -81,18 +85,8 @@ public class Reclamation implements Serializable {
     public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
-    public String getPiece() {
-        return this.piece;
-    }
 
-    public Reclamation piece(String piece) {
-        this.setPiece(piece);
-        return this;
-    }
 
-    public void setPiece(String piece) {
-        this.piece = piece;
-    }
 
     public String getEmail() {
         return this.email;
@@ -106,9 +100,6 @@ public class Reclamation implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-
 
     public String getEtat() {
         return this.etat;

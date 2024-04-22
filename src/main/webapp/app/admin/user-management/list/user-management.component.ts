@@ -27,16 +27,16 @@ export default class UserManagementComponent implements OnInit {
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
-  page!: number;
-  predicate!: string;
-  ascending!: boolean;
+  page = 1;
+  predicate = 'id';
+  ascending = true;
 
   constructor(
     private userService: UserManagementService,
     private accountService: AccountService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -55,11 +55,20 @@ export default class UserManagementComponent implements OnInit {
   deleteUser(user: User): void {
     const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.user = user;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed.subscribe(reason => {
-      if (reason === 'deleted') {
+    modalRef.result.then((result) => {
+      if (result === 'deleted') {
         this.loadAll();
       }
+    }).catch((error) => {
+      console.error('Modal error:', error);
+    });
+  }
+
+  confirmDelete(login: string): void {
+    this.userService.delete(login).subscribe(() => {
+      this.loadAll();
+    }, (error) => {
+      console.error('Delete error:', error);
     });
   }
 
@@ -69,24 +78,24 @@ export default class UserManagementComponent implements OnInit {
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
-        sort: this.sort(),
+        sort: this.sort()
       })
       .subscribe({
         next: (res: HttpResponse<User[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
         },
-        error: () => (this.isLoading = false),
+        error: () => (this.isLoading = false)
       });
   }
 
   transition(): void {
-    this.router.navigate(['./'], {
+    this.router.navigate(['.'], {
       relativeTo: this.activatedRoute.parent,
       queryParams: {
         page: this.page,
-        sort: `${this.predicate},${this.ascending ? ASC : DESC}`,
-      },
+        sort: `${this.predicate},${this.ascending ? ASC : DESC}`
+      }
     });
   }
 

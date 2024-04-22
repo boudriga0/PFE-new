@@ -1,10 +1,13 @@
 package com.reclamation.pfe.service.criteria;
 
-import java.io.Serializable;
-import java.util.Objects;
 import org.springdoc.core.annotations.ParameterObject;
 import tech.jhipster.service.Criteria;
 import tech.jhipster.service.filter.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Criteria class for the {@link com.reclamation.pfe.domain.Reclamation} entity. This class is used
@@ -24,7 +27,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     private LongFilter id;
 
     private StringFilter categorie;
-    private StringFilter piece;
+
     private StringFilter email;
 
     private StringFilter etat;
@@ -47,7 +50,6 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public ReclamationCriteria(ReclamationCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.categorie = other.categorie == null ? null : other.categorie.copy();
-        this.piece = other.piece == null ? null : other.piece.copy();
         this.email = other.email == null ? null : other.email.copy();
         this.etat = other.etat == null ? null : other.etat.copy();
         this.numero = other.numero == null ? null : other.numero.copy();
@@ -95,6 +97,8 @@ public class ReclamationCriteria implements Serializable, Criteria {
         this.categorie = categorie;
     }
 
+
+
     public StringFilter getEmail() {
         return email;
     }
@@ -111,21 +115,6 @@ public class ReclamationCriteria implements Serializable, Criteria {
         this.email = email;
     }
 
-    public StringFilter getPiece() {
-        return piece;
-    }
-
-
-    public StringFilter piece() {
-        if (piece == null) {
-            piece = new StringFilter();
-        }
-        return piece;
-    }
-
-    public void setPiece(StringFilter piece) {
-        this.piece = piece;
-    }
 
     public StringFilter getIsDeveloping() {
         return isDeveloping;
@@ -252,8 +241,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(categorie, that.categorie) &&
-                Objects.equals(email, that.email) &&
-            Objects.equals(etat, that.etat) &&
+                Objects.equals(etat, that.etat) &&
             Objects.equals(numero, that.numero) &&
             Objects.equals(date, that.date) &&
             Objects.equals(isDeveloping, that.isDeveloping) &&
@@ -266,7 +254,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categorie,email, isDeveloping, etat, numero, date, pieceJointeId, commentaireId, personneId, distinct);
+        return Objects.hash(id, categorie ,email, isDeveloping, etat, numero, date, pieceJointeId, commentaireId, personneId, distinct);
     }
 
     // prettier-ignore

@@ -19,7 +19,6 @@ type ReclamationFormDefaults = Pick<NewReclamation, 'id'>;
 type ReclamationFormGroupContent = {
   id: FormControl<IReclamation['id'] | NewReclamation['id']>;
   categorie: FormControl<IReclamation['categorie']>;
-  piece: FormControl<IReclamation['piece']>;
   email: FormControl<IReclamation['email']>;
   etat: FormControl<IReclamation['etat']>;
   numero: FormControl<IReclamation['numero']>;
@@ -47,7 +46,6 @@ export class ReclamationFormService {
         },
       ),
       categorie: new FormControl(reclamationRawValue.categorie),
-      piece: new FormControl(reclamationRawValue.piece),
       email: new FormControl(reclamationRawValue.email),
       etat: new FormControl(reclamationRawValue.etat),
       numero: new FormControl(reclamationRawValue.numero),

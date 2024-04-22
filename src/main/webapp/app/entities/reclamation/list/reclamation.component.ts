@@ -52,16 +52,18 @@ export class ReclamationComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
-    login: new FormControl(initialAccount.login, { nonNullable: true }),
+    login: new FormControl(initialAccount.login, {nonNullable: true}),
   });
   email: string = "";
+
   constructor(
     protected reclamationService: ReclamationService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected modalService: NgbModal,
     private accountService: AccountService,
-  ) {}
+  ) {
+  }
 
   trackId = (_index: number, item: IReclamation): number => this.reclamationService.getReclamationIdentifier(item);
 
@@ -70,7 +72,7 @@ export class ReclamationComponent implements OnInit {
       if (account) {
         console.log(account)
         this.email = account.email;
-        this.settingsForm.patchValue({ email: account.email });
+        this.settingsForm.patchValue({email: account.email});
         this.settingsForm.patchValue(account);
 
       }
@@ -80,8 +82,9 @@ export class ReclamationComponent implements OnInit {
 
     this.filters.filterChanges.subscribe(filterOptions => this.handleNavigation(1, this.predicate, this.ascending, filterOptions));
   }
+
   delete(reclamation: IReclamation): void {
-    const modalRef = this.modalService.open(ReclamationDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(ReclamationDeleteDialogComponent, {size: 'lg', backdrop: 'static'});
     modalRef.componentInstance.reclamation = reclamation;
     modalRef.closed
       .pipe(
@@ -182,5 +185,30 @@ export class ReclamationComponent implements OnInit {
     } else {
       return [predicate + ',' + ascendingQueryParam];
     }
+  }
+
+  confirmDelete(id: number): void {
+    this.reclamationService.delete(id).subscribe(() => {
+      this.loadAll();
+    }, (error) => {
+      console.error('Delete error:', error);
+    });
+  }
+
+  loadAll(): void {
+    this.isLoading = true;
+    this.reclamationService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+  }
+  private sort(): string[] {
+    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
   }
 }
