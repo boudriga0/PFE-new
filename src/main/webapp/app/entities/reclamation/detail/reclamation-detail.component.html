@@ -91,13 +91,18 @@
             <dd>
               <span>{{ reclamation.email }}</span>
             </dd>
-            <dt style="font-weight: bold; text-align: left;"><span >Nom du projet </span></dt>
+            <dt style="font-weight: bold; text-align: left;"><span>Date</span></dt>
             <dd>
-              <span>{{ reclamation.categorie }}</span>
+              <span>{{ reclamation.date }}</span>
             </dd>
+
             <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="pfeApp.reclamation.etat">État</span></dt>
             <dd>
               <span>{{ reclamation.etat }}</span>
+            </dd>
+            <dt style="font-weight: bold; text-align: left;"><span >Nom du projet </span></dt>
+            <dd>
+              <span>{{ reclamation.categorie }}</span>
             </dd>
             <dt style="font-weight: bold; text-align: left;"><span>Plainte</span></dt>
             <dd>
@@ -128,7 +133,7 @@
 
             <li *reclamationHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active">
                <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="custom-button btn-envoyer">
-          <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>&nbsp;<span class="align-middle">Envoyer</span>
+          <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>&nbsp;<span class="align-middle">vérifier</span>
         </button>
             </li>
           </div>

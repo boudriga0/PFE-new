@@ -27,7 +27,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     private LongFilter id;
 
     private StringFilter categorie;
-
+    private StringFilter piece;
     private StringFilter email;
 
     private StringFilter etat;
@@ -50,6 +50,8 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public ReclamationCriteria(ReclamationCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.categorie = other.categorie == null ? null : other.categorie.copy();
+        this.piece = other.piece == null ? null : other.piece.copy();
+
         this.email = other.email == null ? null : other.email.copy();
         this.etat = other.etat == null ? null : other.etat.copy();
         this.numero = other.numero == null ? null : other.numero.copy();
@@ -95,6 +97,21 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     public void setCategorie(StringFilter categorie) {
         this.categorie = categorie;
+    }
+    public StringFilter getPiece() {
+        return piece;
+    }
+
+
+    public StringFilter piece() {
+        if (piece == null) {
+            piece = new StringFilter();
+        }
+        return piece;
+    }
+
+    public void setPiece(StringFilter piece) {
+        this.piece = piece;
     }
 
 
@@ -241,6 +258,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(categorie, that.categorie) &&
+                Objects.equals(piece, that.piece) &&
                 Objects.equals(etat, that.etat) &&
             Objects.equals(numero, that.numero) &&
             Objects.equals(date, that.date) &&
@@ -254,7 +272,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categorie ,email, isDeveloping, etat, numero, date, pieceJointeId, commentaireId, personneId, distinct);
+        return Objects.hash(id, categorie ,piece ,email, isDeveloping, etat, numero, date, pieceJointeId, commentaireId, personneId, distinct);
     }
 
     // prettier-ignore
@@ -264,6 +282,8 @@ public class ReclamationCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (categorie != null ? "categorie=" + categorie + ", " : "") +
             (categorie != null ? "isDeveloping=" + isDeveloping + ", " : "") +
+            (piece != null ? "piece=" + piece + ", " : "") +
+            (piece != null ? "isDeveloping=" + isDeveloping + ", " : "") +
             (email != null ? "email=" + email + ", " : "") +
             (email != null ? "isDeveloping=" + isDeveloping + ", " : "") +
             (etat != null ? "etat=" + etat + ", " : "") +

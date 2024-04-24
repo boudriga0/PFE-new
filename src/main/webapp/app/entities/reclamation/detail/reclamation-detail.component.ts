@@ -64,16 +64,18 @@ export class ReclamationDetailComponent {
         { text: '\n' },
         { text: `Email: ${this.reclamation?.email}`, style: 'subheader' },
         { text: '\n' },
-        { text: `Nom du projet: ${this.reclamation?.categorie}`, style: 'subheader' },
+        { text: `Date: ${this.reclamation?.date}`, style: 'subheader' },
         { text: '\n' },
         { text: `Etat: ${this.reclamation?.etat}`, style: 'subheader' },
+        { text: '\n' },
+        { text: `Nom du projet: ${this.reclamation?.categorie}`, style: 'subheader' },
         { text: '\n' },
         { text: `Plainte: ${this.reclamation?.numero}`, style: 'subheader' },
       ],
       footer: { text: 'GPRO Consulting © 2024 ', style: 'footer' },
       styles: {
         header: {
-          fontSize: 25,
+          fontSize: 20,
           bold: true,
           color: '#930327'
         },
