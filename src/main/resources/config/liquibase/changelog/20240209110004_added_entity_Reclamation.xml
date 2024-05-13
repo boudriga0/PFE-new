@@ -29,6 +29,12 @@
             <column name="date" type="date">
                 <constraints nullable="true" />
             </column>
+            <column name="jointpiece" type="blob">
+                <constraints nullable="true" />
+            </column>
+            <column name="jointpiece_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="personne_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -58,6 +64,8 @@
             <column name="etat" type="string"/>
             <column name="numero" type="string"/>
             <column name="date" type="date"/>
+            <column name="jointpiece" type="blob"/>
+            <column name="jointpiece_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

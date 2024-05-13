@@ -4,10 +4,10 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { AccountService } from 'app/core/auth/account.service';
 import { AppPageTitleStrategy } from 'app/app-page-title-strategy';
 import PageRibbonComponent from '../profiles/page-ribbon.component';
-import {FooterComponent} from "../footer/footer.component";
-import {CommonModule, registerLocaleData} from "@angular/common";
+import { FooterComponent } from '../footer/footer.component';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
 registerLocaleData(localeFr);
 @Component({
@@ -42,4 +42,5 @@ export default class MainComponent implements OnInit {
   isAuthenticated(): boolean {
     return this.accountService.isAuthenticated();
   }
+  title = 'Angular Upload Files';
 }

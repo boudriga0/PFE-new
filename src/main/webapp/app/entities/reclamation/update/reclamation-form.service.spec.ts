@@ -21,7 +21,6 @@ describe('Reclamation Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             categorie: expect.any(Object),
-            piece: expect.any(Object),
             etat: expect.any(Object),
             numero: expect.any(Object),
             date: expect.any(Object),
@@ -38,7 +37,6 @@ describe('Reclamation Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             categorie: expect.any(Object),
-            piece: expect.any(Object),
             etat: expect.any(Object),
             numero: expect.any(Object),
             date: expect.any(Object),

@@ -2,16 +2,16 @@ package com.reclamation.pfe.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.cfg.AvailableSettings;
 
 /**
  * A Reclamation.
@@ -32,8 +32,6 @@ public class Reclamation implements Serializable {
 
     @Column(name = "categorie")
     private String categorie;
-    @Column(name = "piece")
-    private String piece;
 
     @Column(name = "email")
     private String email;
@@ -46,6 +44,13 @@ public class Reclamation implements Serializable {
 
     @Column(name = "date")
     private LocalDate date;
+
+    @Lob
+    @Column(name = "jointpiece")
+    private byte[] jointpiece;
+
+    @Column(name = "jointpiece_content_type")
+    private String jointpieceContentType;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reclamation")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -86,20 +91,6 @@ public class Reclamation implements Serializable {
     public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
-    public String getPiece() {
-        return this.piece;
-    }
-
-    public Reclamation piece(String piece) {
-        this.setPiece(piece);
-        return this;
-    }
-
-    public void setPiece(String piece) {
-        this.piece = piece;
-    }
-
-
 
     public String getEmail() {
         return this.email;
@@ -184,6 +175,14 @@ public class Reclamation implements Serializable {
         return this;
     }
 
+    public String getJointpieceContentType() {
+        return jointpieceContentType;
+    }
+
+    public void setJointpieceContentType(String jointpieceContentType) {
+        this.jointpieceContentType = jointpieceContentType;
+    }
+
     public Set<Commentaire> getCommentaires() {
         return this.commentaires;
     }
@@ -228,6 +227,14 @@ public class Reclamation implements Serializable {
         return this;
     }
 
+    public byte[] getJointpiece() {
+        return jointpiece;
+    }
+
+    public void setJointpiece(byte[] jointpiece) {
+        this.jointpiece = jointpiece;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -248,16 +255,22 @@ public class Reclamation implements Serializable {
     }
 
     // prettier-ignore
+
+
     @Override
     public String toString() {
         return "Reclamation{" +
-            "id=" + getId() +
-            ", categorie='" + getCategorie() + "'" +
-            ", piece='" + getPiece() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", etat='" + getEtat() + "'" +
-            ", numero='" + getNumero() + "'" +
-            ", date='" + getDate() + "'" +
-            "}";
+            "id=" + id +
+            ", categorie='" + categorie + '\'' +
+            ", email='" + email + '\'' +
+            ", etat='" + etat + '\'' +
+            ", numero='" + numero + '\'' +
+            ", date=" + date +
+            ", jointpiece=" + Arrays.toString(jointpiece) +
+            ", jointpieceContentType='" + jointpieceContentType + '\'' +
+            ", pieceJointes=" + pieceJointes +
+            ", commentaires=" + commentaires +
+            ", personne=" + personne +
+            '}';
     }
 }

@@ -36,6 +36,9 @@ export class ReclamationService {
     protected applicationConfigService: ApplicationConfigService,
   ) {}
 
+  sendmail(data: any): any {
+    return this.http.post(this.applicationConfigService.getEndpointFor(`/api/send-mail`), data, { observe: 'response' });
+  }
   create(reclamation: NewReclamation): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(reclamation);
     return this.http
@@ -49,17 +52,6 @@ export class ReclamationService {
       .put<RestReclamation>(`${this.resourceUrl}/${this.getReclamationIdentifier(reclamation)}`, copy, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
-  updateWithFile(reclamation: IReclamation, formData: FormData): Observable<HttpResponse<IReclamation>> {
-    return this.http.put<IReclamation>(`${this.resourceUrl}/${this.getReclamationIdentifier(reclamation)}`, formData, {
-      observe: 'response',
-    });
-  }
-
-  createWithFile(reclamation: Omit<IReclamation, 'id'> & { id: null }, formData: FormData): Observable<HttpResponse<IReclamation>> {
-    // Assurez-vous que formData contient les données de votre formulaire ainsi que le fichier
-    return this.http.post<IReclamation>(this.resourceUrl, formData, { observe: 'response' });
-  }
-
 
   partialUpdate(reclamation: PartialUpdateReclamation): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(reclamation);

@@ -5,10 +5,9 @@
     </div>
   </div>
   <div class="row">
-
     <div class="col-md-2" *ngIf="isAuthenticated()">
       @if (accountService.isAuthenticated()) {
-      <router-outlet name="sidebar"></router-outlet>
+        <router-outlet name="sidebar"></router-outlet>
       }
     </div>
 

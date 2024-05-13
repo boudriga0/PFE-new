@@ -1,147 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Votre Page</title>
-  <style>
-    .custom-button {
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-right: 10px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Votre Page</title>
+    <style>
+      .custom-button {
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+      }
 
-    .btn-retour {
-      background-color: #777e85;
-      color: #fff;
-    }
+      .btn-retour {
+        background-color: #777e85;
+        color: #fff;
+      }
 
-    .btn-corriger {
-      background-color: #49cbf8;
-      color: #212529;
-    }
-    .btn-telecharger {
-      background-color: #014c64;
-      color: #fff;
-    }
+      .btn-corriger {
+        background-color: #49cbf8;
+        color: #212529;
+      }
+      .btn-telecharger {
+        background-color: #014c64;
+        color: #fff;
+      }
 
+      .btn-envoyer {
+        background-color: #dc3545;
+        color: #fff;
+      }
 
-    .btn-envoyer {
-      background-color: #dc3545;
-      color: #fff;
-    }
+      .contenu {
+        border: 6px solid blue;
+        padding: 20px;
+      }
 
-    .contenu {
-      border: 6px solid blue;
-      padding: 20px;
-    }
+      .custom-button,
+      .contenu {
+        font-size: 18px;
+      }
 
-    .custom-button,
-    .contenu {
-      font-size: 18px;
-    }
+      .custom-file-input {
+        display: inline-block;
+        width: auto;
+        height: auto;
+        padding: 10px 18px;
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 2px solid #ced4da;
+        border-radius: 4px;
+        transition:
+          border-color 0.15s ease-in-out,
+          box-shadow 0.15s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0">
+      <div style="width: 70%; max-width: 800px; border: 2px solid #333; background-color: #fff" class="contenu">
+        <div class="d-flex justify-content-center">
+          <div class="col-8" style="color: #333; font-family: Arial, sans-serif">
+            @if (reclamation) {
+              <div>
+                <h2
+                  id="reclamation-reclamation-heading"
+                  data-cy="ReclamationCreateUpdateHeading"
+                  style="font-family: Arial, sans-serif; font-weight: bold; color: #5993b0"
+                >
+                  Détail <span style="font-weight: normal; color: black"> du Réclamation </span>
+                </h2>
 
-    .custom-file-input {
-      display: inline-block;
-      width: auto;
-      height: auto;
-      padding: 10px 18px;
-      margin-bottom: 0;
-      font-size: 18px;
-      line-height: 1.5;
-      color: #212529;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 2px solid #ced4da;
-      border-radius: 4px;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-  </style>
-</head>
-<body>
+                <hr />
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0;">
-  <div style="width: 70%; max-width: 800px; border: 2px solid #333; background-color: #fff;" class="contenu">
-    <div class="d-flex justify-content-center">
-      <div class="col-8" style="color: #333; font-family: Arial, sans-serif;">
+                <reclamation-alert-error style="color: #dc3545"></reclamation-alert-error>
 
-        @if (reclamation) {
-        <div>
-          <h2 id="reclamation-reclamation-heading" data-cy="ReclamationCreateUpdateHeading" style="font-family: Arial, sans-serif; font-weight: bold; color:#5993b0;">
-            Détail  <span style="font-weight: normal;color:black;"> du Réclamation </span>
-          </h2>
+                <reclamation-alert style="font-style: italic"></reclamation-alert>
 
-          <hr />
+                <dl class="row-md jh-entity-details">
+                  <dt style="font-weight: bold; text-align: left"><span reclamationTranslate="global.field.id">ID</span></dt>
+                  <dd>
+                    <span>{{ reclamation.id }}</span>
+                  </dd>
+                  <dt style="font-weight: bold; text-align: left"><span>Email</span></dt>
+                  <dd>
+                    <span>{{ reclamation.email }}</span>
+                  </dd>
+                  <dt style="font-weight: bold; text-align: left"><span>Date</span></dt>
+                  <dd>
+                    <span>{{ reclamation.date }}</span>
+                  </dd>
 
+                  <dt style="font-weight: bold; text-align: left"><span reclamationTranslate="pfeApp.reclamation.etat">État</span></dt>
+                  <dd>
+                    <span>{{ reclamation.etat }}</span>
+                  </dd>
+                  <dt style="font-weight: bold; text-align: left"><span>Nom du projet </span></dt>
+                  <dd>
+                    <span>{{ reclamation.categorie }}</span>
+                  </dd>
+                  <dt style="font-weight: bold; text-align: left"><span>Plainte</span></dt>
+                  <dd>
+                    <span>{{ reclamation.numero }}</span>
+                  </dd>
+                  <dt style="font-weight: bold; text-align: left"><span>Piece jointe</span></dt>
+                  <dd>
+                    <span>{{ reclamation.jointpieceContentType }}</span>
+                  </dd>
+                </dl>
 
-          <reclamation-alert-error style="color: #dc3545;"></reclamation-alert-error>
-
-          <reclamation-alert style="font-style: italic;"></reclamation-alert>
-
-          <dl class="row-md jh-entity-details">
-
-            <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="global.field.id">ID</span></dt>
-            <dd>
-              <span>{{ reclamation.id }}</span>
-            </dd>
-            <dt style="font-weight: bold; text-align: left;"><span>Email</span></dt>
-            <dd>
-              <span>{{ reclamation.email }}</span>
-            </dd>
-            <dt style="font-weight: bold; text-align: left;"><span>Date</span></dt>
-            <dd>
-              <span>{{ reclamation.date }}</span>
-            </dd>
-
-            <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="pfeApp.reclamation.etat">État</span></dt>
-            <dd>
-              <span>{{ reclamation.etat }}</span>
-            </dd>
-            <dt style="font-weight: bold; text-align: left;"><span >Nom du projet </span></dt>
-            <dd>
-              <span>{{ reclamation.categorie }}</span>
-            </dd>
-            <dt style="font-weight: bold; text-align: left;"><span>Plainte</span></dt>
-            <dd>
-              <span>{{ reclamation.numero }}</span>
-            </dd>
-          </dl>
-
-
-          <!-- <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="pfeApp.reclamation.pieceJointe">Piece jointe</span></dt>
+                <!-- <dt style="font-weight: bold; text-align: left;"><span reclamationTranslate="pfeApp.reclamation.pieceJointe">Piece jointe</span></dt>
            <dd>
            <span>{{ reclamation.pieceJointe }}</span>
             </dd>-->
 
-          <div class="d-flex justify-content-between align-items-center">
-           <button type="submit" (click)="previousState()" class="custom-button btn-retour" data-cy="entityDetailsBackButton">
-          <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon>&nbsp;<span class="align-middle" reclamationTranslate="entity.action.back">Retour</span>
-        </button>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button type="submit" (click)="previousState()" class="custom-button btn-retour" data-cy="entityDetailsBackButton">
+                    <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon>&nbsp;<span
+                      class="align-middle"
+                      reclamationTranslate="entity.action.back"
+                      >Retour</span
+                    >
+                  </button>
 
-            <li *reclamationHasAnyAuthority="'ROLE_DEV'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active">
-               <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="custom-button btn-corriger">
-          <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>&nbsp;<span class="align-middle">Corriger</span>
-        </button>
-            </li>
+                  <li
+                    *reclamationHasAnyAuthority="'ROLE_DEV'"
+                    ngbDropdown
+                    class="nav-item dropdown pointer"
+                    display="dynamic"
+                    routerLinkActive="active"
+                  >
+                    <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="custom-button btn-corriger">
+                      <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>&nbsp;<span class="align-middle">Corriger</span>
+                    </button>
+                  </li>
 
-             <a class="custom-button btn-telecharger" (click)="generatePDF()">
-          <fa-icon [icon]="['fas','download']"></fa-icon>&nbsp;<span class="align-middle">Télécharger</span>
-        </a>
+                  <a class="custom-button btn-telecharger" (click)="generatePDF()">
+                    <fa-icon [icon]="['fas', 'download']"></fa-icon>&nbsp;<span class="align-middle">Télécharger</span>
+                  </a>
 
-            <li *reclamationHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active">
-               <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="custom-button btn-envoyer">
-          <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>&nbsp;<span class="align-middle">vérifier</span>
-        </button>
-            </li>
+                  <li
+                    *reclamationHasAnyAuthority="'ROLE_ADMIN'"
+                    ngbDropdown
+                    class="nav-item dropdown pointer"
+                    display="dynamic"
+                    routerLinkActive="active"
+                  >
+                    <button type="button" [routerLink]="['/reclamation', reclamation.id, 'edit']" class="custom-button btn-envoyer">
+                      <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon>&nbsp;<span class="align-middle">vérifier</span>
+                    </button>
+                  </li>
+                </div>
+              </div>
+            }
           </div>
         </div>
-        }
       </div>
     </div>
-  </div>
-</div>
-</body>
+  </body>
 </html>

@@ -24,6 +24,9 @@ type ReclamationFormGroupContent = {
   numero: FormControl<IReclamation['numero']>;
   date: FormControl<IReclamation['date']>;
 
+  jointpiece: FormControl<IReclamation['jointpiece']>;
+  jointpieceContentType: FormControl<IReclamation['jointpieceContentType']>;
+
   pieceJointe: FormControl<IReclamation['pieceJointe']>;
   personne: FormControl<IReclamation['personne']>;
 };
@@ -50,6 +53,8 @@ export class ReclamationFormService {
       etat: new FormControl(reclamationRawValue.etat),
       numero: new FormControl(reclamationRawValue.numero),
       date: new FormControl(reclamationRawValue.date),
+      jointpiece: new FormControl(reclamationRawValue.jointpiece),
+      jointpieceContentType: new FormControl(reclamationRawValue.jointpieceContentType),
       pieceJointe: new FormControl(reclamationRawValue.pieceJointe),
       personne: new FormControl(reclamationRawValue.personne),
     });

@@ -1,13 +1,13 @@
 package com.reclamation.pfe.service.criteria;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.Objects;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.multipart.MultipartFile;
 import tech.jhipster.service.Criteria;
 import tech.jhipster.service.filter.*;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Criteria class for the {@link com.reclamation.pfe.domain.Reclamation} entity. This class is used
@@ -27,7 +27,7 @@ public class ReclamationCriteria implements Serializable, Criteria {
     private LongFilter id;
 
     private StringFilter categorie;
-    private StringFilter piece;
+
     private StringFilter email;
 
     private StringFilter etat;
@@ -36,7 +36,8 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     private LocalDateFilter date;
     private StringFilter isDeveloping;
-
+    private StringFilter jointpieceContentType;
+    private byte[] jointpiece;
     private LongFilter pieceJointeId;
 
     private LongFilter commentaireId;
@@ -50,12 +51,13 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public ReclamationCriteria(ReclamationCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.categorie = other.categorie == null ? null : other.categorie.copy();
-        this.piece = other.piece == null ? null : other.piece.copy();
 
         this.email = other.email == null ? null : other.email.copy();
         this.etat = other.etat == null ? null : other.etat.copy();
         this.numero = other.numero == null ? null : other.numero.copy();
         this.isDeveloping = other.isDeveloping == null ? null : other.isDeveloping.copy();
+        this.jointpieceContentType = other.jointpieceContentType == null ? null : other.jointpieceContentType.copy();
+        this.jointpiece = other.jointpiece;
         this.date = other.date == null ? null : other.date.copy();
         this.pieceJointeId = other.pieceJointeId == null ? null : other.pieceJointeId.copy();
         this.commentaireId = other.commentaireId == null ? null : other.commentaireId.copy();
@@ -87,7 +89,6 @@ public class ReclamationCriteria implements Serializable, Criteria {
         return categorie;
     }
 
-
     public StringFilter categorie() {
         if (categorie == null) {
             categorie = new StringFilter();
@@ -98,28 +99,33 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public void setCategorie(StringFilter categorie) {
         this.categorie = categorie;
     }
-    public StringFilter getPiece() {
-        return piece;
+
+    public StringFilter getJointpieceContentType() {
+        return jointpieceContentType;
     }
 
-
-    public StringFilter piece() {
-        if (piece == null) {
-            piece = new StringFilter();
+    public StringFilter jointpieceContentType() {
+        if (jointpieceContentType == null) {
+            jointpieceContentType = new StringFilter();
         }
-        return piece;
+        return jointpieceContentType;
     }
 
-    public void setPiece(StringFilter piece) {
-        this.piece = piece;
+    public void setJointpieceContentType(StringFilter jointpieceContentType) {
+        this.jointpieceContentType = jointpieceContentType;
     }
 
+    public byte[] getJointpiece() {
+        return jointpiece;
+    }
 
+    public void setJointpiece(byte[] jointpiece) {
+        this.jointpiece = jointpiece;
+    }
 
     public StringFilter getEmail() {
         return email;
     }
-
 
     public StringFilter email() {
         if (email == null) {
@@ -131,7 +137,6 @@ public class ReclamationCriteria implements Serializable, Criteria {
     public void setEmail(StringFilter email) {
         this.email = email;
     }
-
 
     public StringFilter getIsDeveloping() {
         return isDeveloping;
@@ -258,8 +263,9 @@ public class ReclamationCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(categorie, that.categorie) &&
-                Objects.equals(piece, that.piece) &&
-                Objects.equals(etat, that.etat) &&
+            Objects.equals(jointpieceContentType, that.jointpieceContentType) &&
+            Arrays.equals(jointpiece, that.jointpiece) &&
+            Objects.equals(etat, that.etat) &&
             Objects.equals(numero, that.numero) &&
             Objects.equals(date, that.date) &&
             Objects.equals(isDeveloping, that.isDeveloping) &&
@@ -272,7 +278,21 @@ public class ReclamationCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categorie ,piece ,email, isDeveloping, etat, numero, date, pieceJointeId, commentaireId, personneId, distinct);
+        return Objects.hash(
+            id,
+            jointpieceContentType,
+            Arrays.hashCode(jointpiece),
+            categorie,
+            email,
+            isDeveloping,
+            etat,
+            numero,
+            date,
+            pieceJointeId,
+            commentaireId,
+            personneId,
+            distinct
+        );
     }
 
     // prettier-ignore
@@ -282,8 +302,8 @@ public class ReclamationCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (categorie != null ? "categorie=" + categorie + ", " : "") +
             (categorie != null ? "isDeveloping=" + isDeveloping + ", " : "") +
-            (piece != null ? "piece=" + piece + ", " : "") +
-            (piece != null ? "isDeveloping=" + isDeveloping + ", " : "") +
+            (categorie != null ? "jointpieceContentType=" + jointpieceContentType + ", " : "") +
+            (categorie != null ? "jointpiece=" + Arrays.toString(jointpiece) + ", " : "") +
             (email != null ? "email=" + email + ", " : "") +
             (email != null ? "isDeveloping=" + isDeveloping + ", " : "") +
             (etat != null ? "etat=" + etat + ", " : "") +

@@ -6,17 +6,20 @@ import { IPersonne } from 'app/entities/personne/personne.model';
 export interface IReclamation {
   id: number;
   categorie?: string | null;
-  piece?: string | null;
   email?: string | null;
   etat?: string | null;
   numero?: string | null;
   date?: dayjs.Dayjs | null;
+
+  jointpiece?: string | null;
+
+  jointpieceContentType?: string | null;
+
   pieceJointe?: string | null;
 
   pieceJointes?: Pick<IPieceJointe, 'id'>[] | null;
   commentaires?: Pick<ICommentaire, 'id'>[] | null;
   personne?: Pick<IPersonne, 'id'> | null;
-
 }
 
 export type NewReclamation = Omit<IReclamation, 'id'> & { id: null };

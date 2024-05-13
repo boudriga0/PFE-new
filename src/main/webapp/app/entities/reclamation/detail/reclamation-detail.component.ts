@@ -5,12 +5,12 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import SharedModule from 'app/shared/shared.module';
 import { DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe } from 'app/shared/date';
 import { IReclamation } from '../reclamation.model';
-import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
-import { findIconDefinition } from "@fortawesome/fontawesome-svg-core";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Account} from "../../../core/auth/account.model";
-import {TranslateModule} from "@ngx-translate/core";
-import {AccountService} from "../../../core/auth/account.service";
+import HasAnyAuthorityDirective from '../../../shared/auth/has-any-authority.directive';
+import { findIconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Account } from '../../../core/auth/account.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { AccountService } from '../../../core/auth/account.service';
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 const initialAccount: Account = {} as Account;
@@ -19,7 +19,17 @@ const initialAccount: Account = {} as Account;
   standalone: true,
   selector: 'reclamation-reclamation-detail',
   templateUrl: './reclamation-detail.component.html',
-  imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe, HasAnyAuthorityDirective, ReactiveFormsModule, TranslateModule, FormsModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    DurationPipe,
+    FormatMediumDatetimePipe,
+    FormatMediumDatePipe,
+    HasAnyAuthorityDirective,
+    ReactiveFormsModule,
+    TranslateModule,
+    FormsModule,
+  ],
 })
 export class ReclamationDetailComponent {
   @Input()
@@ -32,11 +42,12 @@ export class ReclamationDetailComponent {
     }),
     login: new FormControl(initialAccount.login, { nonNullable: true }),
   });
-  email: string = "";
+  email: string = '';
 
-  constructor(protected activatedRoute: ActivatedRoute,
-              private accountService: AccountService,
-              ) {}
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    private accountService: AccountService,
+  ) {}
 
   previousState(): void {
     window.history.back();
@@ -45,12 +56,11 @@ export class ReclamationDetailComponent {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
       if (account) {
-        console.log(account)
+        console.log(account);
         this.email = account.email;
         this.settingsForm.patchValue({ email: account.email });
         this.settingsForm.patchValue(account);
       }
-
     });
   }
   generatePDF() {
@@ -71,29 +81,30 @@ export class ReclamationDetailComponent {
         { text: `Nom du projet: ${this.reclamation?.categorie}`, style: 'subheader' },
         { text: '\n' },
         { text: `Plainte: ${this.reclamation?.numero}`, style: 'subheader' },
+        { text: '\n' },
+        { text: `Piece Jointe: ${this.reclamation?.jointpieceContentType}`, style: 'subheader' },
       ],
       footer: { text: 'GPRO Consulting © 2024 ', style: 'footer' },
       styles: {
         header: {
           fontSize: 20,
           bold: true,
-          color: '#930327'
+          color: '#930327',
         },
         subheader: {
           fontSize: 15,
           bold: true,
-          color: '#111c14'
+          color: '#111c14',
         },
         footer: {
           fontSize: 10,
           bold: true,
           color: '#333',
-          alignment: 'center'
-        }
-      }
+          alignment: 'center',
+        },
+      },
     };
 
     pdfMake.createPdf(docDefinition).open();
   }
-
 }

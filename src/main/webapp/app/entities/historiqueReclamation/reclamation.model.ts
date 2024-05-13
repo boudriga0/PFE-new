@@ -6,7 +6,6 @@ import { IPersonne } from 'app/entities/personne/personne.model';
 export interface IReclamation {
   id: number;
   categorie?: string | null;
-  piece?: string | null;
   email?: string | null;
 
   etat?: string | null;

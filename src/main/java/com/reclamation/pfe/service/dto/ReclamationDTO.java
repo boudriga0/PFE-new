@@ -1,8 +1,11 @@
 package com.reclamation.pfe.service.dto;
 
+import jakarta.persistence.Lob;
+import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -14,15 +17,19 @@ public class ReclamationDTO implements Serializable {
     private Long id;
 
     private String categorie;
-    private String piece;
-    private String email;
 
+    private String email;
 
     private String etat;
 
     private String numero;
 
     private LocalDate date;
+
+    @Lob
+    private byte[] jointpiece;
+
+    private String jointpieceContentType;
 
     private PersonneDTO personne;
 
@@ -41,14 +48,6 @@ public class ReclamationDTO implements Serializable {
     public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
-    public String getPiece() {
-        return piece;
-    }
-
-    public void setPiece(String piece) {
-        this.piece = piece;
-    }
-
 
     public String getEmail() {
         return email;
@@ -82,6 +81,22 @@ public class ReclamationDTO implements Serializable {
         this.date = date;
     }
 
+    public byte[] getJointpiece() {
+        return jointpiece;
+    }
+
+    public void setJointpiece(byte[] jointpiece) {
+        this.jointpiece = jointpiece;
+    }
+
+    public String getJointpieceContentType() {
+        return jointpieceContentType;
+    }
+
+    public void setJointpieceContentType(String jointpieceContentType) {
+        this.jointpieceContentType = jointpieceContentType;
+    }
+
     public PersonneDTO getPersonne() {
         return personne;
     }
@@ -112,17 +127,20 @@ public class ReclamationDTO implements Serializable {
     }
 
     // prettier-ignore
+
+
     @Override
     public String toString() {
         return "ReclamationDTO{" +
-            "id=" + getId() +
-            ", categorie='" + getCategorie() + "'" +
-            ", piece='" + getPiece() + "'" +
-            ", etat='" + getEtat() + "'" +
-            ", numero='" + getNumero() + "'" +
-            ", date='" + getDate() + "'" +
-            ", personne=" + getPersonne() +
-            ", email=" + getEmail() +
-            "}";
+            "id=" + id +
+            ", categorie='" + categorie + '\'' +
+            ", email='" + email + '\'' +
+            ", etat='" + etat + '\'' +
+            ", numero='" + numero + '\'' +
+            ", date=" + date +
+            ", jointpiece=" + Arrays.toString(jointpiece) +
+            ", jointpieceContentType='" + jointpieceContentType + '\'' +
+            ", personne=" + personne +
+            '}';
     }
 }

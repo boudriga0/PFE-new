@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
@@ -12,17 +12,29 @@ import { PersonneService } from 'app/entities/personne/service/personne.service'
 import { IReclamation } from '../reclamation.model';
 import { ReclamationService } from '../service/reclamation.service';
 import { ReclamationFormService, ReclamationFormGroup } from './reclamation-form.service';
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import HasAnyAuthorityDirective from "../../../shared/auth/has-any-authority.directive";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import HasAnyAuthorityDirective from '../../../shared/auth/has-any-authority.directive';
 
 @Component({
   standalone: true,
   selector: 'reclamation-reclamation-update',
   templateUrl: './reclamation-update.component.html',
-  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgbModule, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective, HasAnyAuthorityDirective],
+  imports: [
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+    HasAnyAuthorityDirective,
+    RouterLinkActive,
+    HasAnyAuthorityDirective,
+  ],
 })
 export class ReclamationUpdateComponent implements OnInit {
-
   isSaving = false;
   reclamation: IReclamation | null = null;
 
@@ -54,12 +66,11 @@ export class ReclamationUpdateComponent implements OnInit {
     window.history.back();
   }
 
-
   saveNotVerified(): void {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
 
-    reclamation.etat = "notVerified";
+    reclamation.etat = 'notVerified';
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {
@@ -70,7 +81,7 @@ export class ReclamationUpdateComponent implements OnInit {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
 
-    reclamation.etat = "Verified";
+    reclamation.etat = 'Verified';
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {
@@ -81,7 +92,7 @@ export class ReclamationUpdateComponent implements OnInit {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
 
-    reclamation.etat = "isDeveloped";
+    reclamation.etat = 'isDeveloped';
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {
@@ -92,7 +103,7 @@ export class ReclamationUpdateComponent implements OnInit {
     this.isSaving = true;
     const reclamation = this.reclamationFormService.getReclamation(this.editForm);
 
-    reclamation.etat = "isValid";
+    reclamation.etat = 'isValid';
     if (reclamation.id !== null) {
       this.subscribeToSaveResponse(this.reclamationService.update(reclamation));
     } else {
